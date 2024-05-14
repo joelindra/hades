@@ -1,0 +1,2 @@
+# hades
+Automate your hacking
