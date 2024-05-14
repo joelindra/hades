@@ -29,3 +29,8 @@ To get started with Hades, clone this repository and execute the script on your 
 
 Hades is intended for ethical hacking and security testing purposes only. Ensure that you have proper authorization before using it against any system or network.
 
+## Image Example Running Script
+
+![image](https://github.com/joelindra/hades/assets/44172898/57152506-ce37-4857-bb33-af91475a6fed)
+
+
