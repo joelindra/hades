@@ -34,5 +34,59 @@ Hades is intended for ethical hacking and security testing purposes only. Ensure
 
 ![image](https://github.com/user-attachments/assets/50946fff-5426-4054-97a0-99fb10c75f96)
 
+# Tool Required On Hades
 
-
+1. figlet
+2. rush
+3. wafw00f
+4. dnsx
+5. git
+6. subjack
+7. seclists
+8. massdns
+9. ffuf
+10. nikto
+11. nmap
+12. golang
+13. subfinder
+14. toilet
+15. pip
+16. npm
+17. zsh
+18. curl
+19. wget
+20. amass
+21. shodan
+22. apkd
+23. fuzzing-templates
+24. kxss
+25. jsfinder
+26. unfurl
+27. subzy
+28. shuffledns
+29. dalfox
+30. Amass
+31. notify
+32. qsreplace
+33. hakrawler
+34. nuclei
+35. httpx
+36. httprobe
+37. waybackurls
+38. assetfinder
+39. fff
+40. anew
+41. interactsh-client
+42. gau
+43. mx-takeover
+44. katana
+45. SubOver
+46. crlfuzz
+47. git-hound
+48. dnsx
+49. massdns resolvers
+50. gf
+51. Gf-Patterns
+52. ghauri
+53. SecretFinder
+54. apkscan
