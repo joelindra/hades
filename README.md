@@ -16,6 +16,7 @@ Hades is a versatile penetration testing tool designed to simplify reconnaissanc
 - **Mass Assessment**: Conduct a comprehensive security assessment across multiple targets.
 - **Subdomain Takeover**: Detect potential subdomain takeover vulnerabilities.
 - **Requirements Installation**: Easily install the necessary dependencies.
+- **APK Enumeration**: Easily enumeration using automate apkscan.
 
 ## Usage
 
@@ -31,6 +32,7 @@ Hades is intended for ethical hacking and security testing purposes only. Ensure
 
 ## Image Example Running Script
 
-![image](https://github.com/joelindra/hades/assets/44172898/57152506-ce37-4857-bb33-af91475a6fed)
+![image](https://github.com/user-attachments/assets/50946fff-5426-4054-97a0-99fb10c75f96)
+
 
 
