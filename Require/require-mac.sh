@@ -84,6 +84,35 @@ cd wafw00f
 python3 setup.py install
 cd ~ && wafw00f --version
 
+# Install Apks
+if ! command -v brew &> /dev/null; then
+    echo "Homebrew not found. Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Ensure Python 3 and git are installed
+brew install python3 git
+# Define the repository URL
+REPO_URL="https://github.com/LucasFaudman/apkscan.git"
+# Define the directory name from the repository URL
+REPO_DIR=$(basename "$REPO_URL" .git)
+# Clone the repository
+git clone "$REPO_URL"
+# Navigate into the repository directory
+cd "$REPO_DIR" || exit
+# Set up a Python virtual environment
+python3 -m venv .venv
+# Activate the virtual environment
+source .venv/bin/activate
+# Install the package in editable mode
+pip3 install -e .
+# Navigate back to the parent directory
+cd ../
+echo "Setup completed successfully."
+
+#install apk downlooad
+pip install git+https://github.com/kiber-io/apkd
+
 # Install SecretFinder
 clear
 echo "127.0.0.1 $(hostname)" | sudo tee -a /etc/hosts
