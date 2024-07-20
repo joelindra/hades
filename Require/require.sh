@@ -13,6 +13,7 @@
   sudo snap install amass
   sudo apt install python3-pip
   pip install shodan
+  pip install git+https://github.com/kiber-io/apkd
   git clone https://github.com/projectdiscovery/fuzzing-templates.git "$home_dir/fuzzing-templates"
 
   clear
@@ -97,3 +98,28 @@
   echo -e $MAGENTA""
   }
   mod
+
+  apks(){
+  REPO_URL="https://github.com/LucasFaudman/apkscan.git"
+
+  # Define the directory name from the repository URL
+  REPO_DIR=$(basename "$REPO_URL" .git)
+
+  # Clone the repository
+  git clone "$REPO_URL"
+
+  # Navigate into the repository directory
+  cd "$REPO_DIR" || exit
+
+  # Set up a Python virtual environment
+  python3 -m venv .venv
+
+  # Activate the virtual environment
+  source .venv/bin/activate
+
+  # Install the package in editable mode
+  pip3 install -e .
+
+  # Navigate back to the parent directory
+  cd ../
+  }
