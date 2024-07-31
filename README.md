@@ -32,7 +32,7 @@ Hades is intended for ethical hacking and security testing purposes only. Ensure
 
 ## Image Example Running Script
 
-![image](https://github.com/user-attachments/assets/50946fff-5426-4054-97a0-99fb10c75f96)
+![image](https://github.com/user-attachments/assets/3b1110b4-dfb9-4364-bd68-84f3331aaf75)
 
 # Tool Required On Hades
 
