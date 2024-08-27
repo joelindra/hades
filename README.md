@@ -15,8 +15,9 @@ Hades is a versatile penetration testing tool designed to simplify reconnaissanc
 - **Single LFI Injection**: Assess single targets for local file inclusion vulnerabilities.
 - **Mass Assessment**: Conduct a comprehensive security assessment across multiple targets.
 - **Subdomain Takeover**: Detect potential subdomain takeover vulnerabilities.
+- **Dirsearch Patrol**: Use Dirsearch to find hidden directories and files on a target.
+- **APK Enumeration**: Automate APK scanning and enumeration tasks.
 - **Requirements Installation**: Easily install the necessary dependencies.
-- **APK Enumeration**: Easily enumeration using automate apkscan.
 
 ## Usage
 
