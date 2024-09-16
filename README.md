@@ -17,6 +17,7 @@ Hades is a versatile penetration testing tool designed to simplify reconnaissanc
 - **Subdomain Takeover**: Detect potential subdomain takeover vulnerabilities.
 - **Dirsearch Patrol**: Use Dirsearch to find hidden directories and files on a target.
 - **APK Enumeration**: Automate APK scanning and enumeration tasks.
+- **DOM XSS Exploit**: Automate Mass DOM XSS Scanning 
 - **Requirements Installation**: Easily install the necessary dependencies.
 
 ## Usage
@@ -33,8 +34,7 @@ Hades is intended for ethical hacking and security testing purposes only. Ensure
 
 ## Image Example Running Script
 
-![image](https://github.com/user-attachments/assets/14e64d1f-2cd2-443c-90a3-af4a6fa52c07)
-
+![image](https://github.com/user-attachments/assets/fbf9baae-7d85-499a-9c0e-6cd0e693c186)
 
 # Tool Required On Hades
 
