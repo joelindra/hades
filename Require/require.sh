@@ -126,9 +126,16 @@
   echo "SecretFinder has been installed."
   
   clear
+  figlet -w 100 -f small "Install Findomxss"
+  cd /root
+  git clone https://github.com/dwisiswant0/findom-xss.git --recurse-submodules
+  cp findom-xss/findom-xss.sh /usr/bin/findomxss
+  chmod +x /usr/bin/findomxss
+
+  clear
   mod(){
   cp /root/go/bin/* /usr/bin/
-  echo -e '#!/bin/bash\nbash /root/H4D3S/hades $1' | sudo tee /usr/bin/hades > /dev/null && sudo chmod +x /usr/bin/hades
+  echo -e '#!/bin/bash\nbash /root/hades/hades $1' | sudo tee /usr/bin/hades > /dev/null && sudo chmod +x /usr/bin/hades
   figlet -w 100 -f small Copy_all_tools!
   echo -e $MAGENTA""
   }
