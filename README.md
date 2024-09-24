@@ -2,27 +2,24 @@
 
 Hades is a versatile penetration testing tool designed to simplify reconnaissance and vulnerability scanning tasks. With Hades, you can conduct targeted scans, find security loopholes, and assess the overall security posture of your applications and networks.
 
-## Features
+## Key Features
 
-- **Single Recon**: Conduct targeted reconnaissance on individual targets.
-- **Mass Recon**: Scale up your reconnaissance efforts for multiple targets simultaneously.
-- **Single JS Finder**: Identify JavaScript files associated with a single target.
-- **Mass JS Finder**: Discover JavaScript files across multiple targets efficiently.
-- **Single SQL Injection**: Test for SQL injection vulnerabilities on a single target.
-- **Mass SQL Injection**: Perform SQL injection tests across multiple targets at once.
-- **Single XSS Injection**: Probe for cross-site scripting vulnerabilities on a single target.
-- **Mass XSS Injection**: Scale up cross-site scripting tests for multiple targets.
-- **Single LFI Injection**: Assess single targets for local file inclusion vulnerabilities.
-- **Mass Assessment**: Conduct a comprehensive security assessment across multiple targets.
-- **Subdomain Takeover**: Detect potential subdomain takeover vulnerabilities.
-- **Dirsearch Patrol**: Use Dirsearch to find hidden directories and files on a target.
-- **APK Enumeration**: Automate APK scanning and enumeration tasks.
-- **DOM XSS Exploit**: Automate Mass DOM XSS Scanning 
-- **Requirements Installation**: Easily install the necessary dependencies.
+- **Single and Mass Reconnaissance**: Effortlessly gather data with options for single-target assessments (`--single-recon`) or bulk scans (`--mass-recon`), enabling efficient reconnaissance operations.
+- **JavaScript Vulnerability Analysis**: Dedicated functions for detecting JavaScript vulnerabilities, available for both single (`--single-js-finder`) and mass (`--mass-js-finder`) assessments.
+- **SQL Injection Testing**: Conduct thorough SQL injection assessments with tailored options for single (`--single-sql-inject`) and mass testing (`--mass-sql-inject`).
+- **Cross-Site Scripting (XSS) Detection**: Identify potential XSS vulnerabilities through specialized testing capabilities for both single (`--single-xss`) and mass (`--mass-xss`) scenarios.
+- **Local File Inclusion (LFI) Checks**: Execute targeted LFI assessments using the `--single-lfi` option to uncover potential weaknesses.
+- **Subdomain Takeover Detection**: Proactively identify vulnerable subdomains with the `--sub-takeover` feature, enhancing your security posture.
+- **Directory Search Patrol**: Conduct regular checks for exposed directories with the `--dirsearch-patrol` function to maintain a secure environment.
+- **APK Enumeration**: Assess Android APK files for security flaws using the `--apk-enum` option, ensuring comprehensive mobile security.
+- **DOM XSS Exploitation**: Identify and exploit DOM-based XSS vulnerabilities with the `--mass-dom-xss` feature, increasing your testing efficacy.
+- **Installation Requirements**: Easily install necessary dependencies with the `--install-requirements` option, simplifying setup for users.
 
-## Usage
+## Usage:
+The tool is invoked via command line with various options tailored to specific security assessment tasks. If no arguments are provided, Hades displays a help menu outlining its features and usage.
 
-Simply execute the Hades script with the desired options to utilize its functionalities. Refer to the provided options to tailor your penetration testing tasks according to your requirements.
+## Color-Coded Outputs: 
+The script employs color-coded output for improved readability and user experience, making it visually engaging and easy to understand.
 
 ## Getting Started
 
@@ -32,9 +29,8 @@ To get started with Hades, clone this repository and execute the script on your 
 
 Hades is intended for ethical hacking and security testing purposes only. Ensure that you have proper authorization before using it against any system or network.
 
-## Image Example Running Script
-
-![image](https://github.com/user-attachments/assets/fbf9baae-7d85-499a-9c0e-6cd0e693c186)
+## Image
+![image](https://github.com/user-attachments/assets/81ae34ea-13c5-436d-b424-d7e37cdd9903)
 
 # Tool Required On Hades
 
@@ -93,9 +89,6 @@ Hades is intended for ethical hacking and security testing purposes only. Ensure
 53. SecretFinder
 54. apkscan
 
-## New Feature: Send Results to Telegram
-1. The newly added send_to_telegram function in Hades allows users to automatically send scan results directly to a specified Telegram chat. This feature works as follows:
-2. Load Telegram Token and Chat ID: The function loads the Telegram bot token and chat ID from telegram_token.txt and telegram_chat_id.txt files, ensuring that the credentials are kept separate and secure.
-3. Send Start Notification: A message is sent to the Telegram chat indicating that the scan has been completed for a specific domain and that the results are being sent.
-4. File Transmission: The function iterates through all files within the specified domain directory and sends each one to the Telegram chat as a document.
-5. Completion Notification: After all files have been sent, a final message is sent to the Telegram chat, confirming that the process is complete.
+## IMPORTANT
+1. Dont forget put your token telegram and apikey on the file
+2. Dont forget to install all requirements before use the tools `-i`
