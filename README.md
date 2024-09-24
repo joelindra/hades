@@ -92,3 +92,5 @@ Hades is intended for ethical hacking and security testing purposes only. Ensure
 ## IMPORTANT
 1. Dont forget put your token telegram and apikey on the file
 2. Dont forget to install all requirements before use the tools `-i`
+
+# ALL Notifications will sended on telegram if you set telegram apikey and token
