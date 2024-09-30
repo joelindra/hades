@@ -120,7 +120,7 @@
   else
       echo "secretfinder.py not found."
   fi
-  pip install -r requirements.txt
+  pip install -r requirements.txt --break-system-packages
   pip install jsbeautifier lxml requests requests_file --break-system-packages
   shodan init Z2oDsaHG35oCrPkzMDZbl9zMsFMhGoWE
   echo "SecretFinder has been installed."
@@ -160,7 +160,7 @@
   source .venv/bin/activate
 
   # Install the package in editable mode
-  pip3 install -e .
+  pip install -e .
 
   # Navigate back to the parent directory
   cd ../
