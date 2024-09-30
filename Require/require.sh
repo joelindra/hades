@@ -12,8 +12,8 @@
   apt install zsh curl wget amass -y
   sudo snap install amass
   sudo apt install python3-pip
-  pip install shodan
-  pip install git+https://github.com/kiber-io/apkd
+  pip install shodan --break-system-packages
+  pip install git+https://github.com/kiber-io/apkd --break-system-packages
   git clone https://github.com/projectdiscovery/fuzzing-templates.git "$home_dir/fuzzing-templates"
 
   clear
@@ -121,7 +121,7 @@
       echo "secretfinder.py not found."
   fi
   pip install -r requirements.txt
-  pip install jsbeautifier lxml requests requests_file
+  pip install jsbeautifier lxml requests requests_file --break-system-packages
   shodan init Z2oDsaHG35oCrPkzMDZbl9zMsFMhGoWE
   echo "SecretFinder has been installed."
   
