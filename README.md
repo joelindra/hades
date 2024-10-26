@@ -5,7 +5,7 @@ Hades is a versatile penetration testing tool designed to simplify reconnaissanc
 ## Key Features
 
 - **Single and Mass Reconnaissance**: Effortlessly gather data with options for single-target assessments (`--single-recon`) or bulk scans (`--mass-recon`), enabling efficient reconnaissance operations.
-- **JavaScript Vulnerability Analysis**: Dedicated functions for detecting JavaScript vulnerabilities, available for both single (`--single-js-finder`) and mass (`--mass-js-finder`) assessments.
+- **JavaScript Vulnerability Analysis**: Dedicated functions for detecting JavaScript vulnerabilities, available for mass (`--mass-js-finder`) assessments.
 - **SQL Injection Testing**: Conduct thorough SQL injection assessments with tailored options for single (`--single-sql-inject`) and mass testing (`--mass-sql-inject`).
 - **Cross-Site Scripting (XSS) Detection**: Identify potential XSS vulnerabilities through specialized testing capabilities for both single (`--single-xss`) and mass (`--mass-xss`) scenarios.
 - **Local File Inclusion (LFI) Checks**: Execute targeted LFI assessments using the `--single-lfi` option to uncover potential weaknesses.
