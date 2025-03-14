@@ -1,96 +1,119 @@
-# Hades
+# Hades - Recon & Exploitation Toolkit
 
-Hades is a versatile penetration testing tool designed to simplify reconnaissance and vulnerability scanning tasks. With Hades, you can conduct targeted scans, find security loopholes, and assess the overall security posture of your applications and networks.
+Hades is a powerful penetration testing tool designed to automate common reconnaissance and exploitation tasks. It offers multiple options to perform various security tests on websites and web applications. Whether you're performing single reconnaissance, mass scanning, or exploitation (SQLi, XSS, LFI), Hades has got you covered.
 
-## Key Features
+## Features
 
-- **Single and Mass Reconnaissance**: Effortlessly gather data with options for single-target assessments (`--single-recon`) or bulk scans (`--mass-recon`), enabling efficient reconnaissance operations.
-- **JavaScript Vulnerability Analysis**: Dedicated functions for detecting JavaScript vulnerabilities, available for mass (`--mass-js-finder`) assessments.
-- **SQL Injection Testing**: Conduct thorough SQL injection assessments with tailored options for single (`--single-sql-inject`) and mass testing (`--mass-sql-inject`).
-- **Cross-Site Scripting (XSS) Detection**: Identify potential XSS vulnerabilities through specialized testing capabilities for both single (`--single-xss`) and mass (`--mass-xss`) scenarios.
-- **Local File Inclusion (LFI) Checks**: Execute targeted LFI assessments using the `--single-lfi` option to uncover potential weaknesses.
-- **Subdomain Takeover Detection**: Proactively identify vulnerable subdomains with the `--sub-takeover` feature, enhancing your security posture.
-- **Directory Search Patrol**: Conduct regular checks for exposed directories with the `--dirsearch-patrol` function to maintain a secure environment.
-- **APK Enumeration**: Assess Android APK files for security flaws using the `--apk-enum` option, ensuring comprehensive mobile security.
-- **DOM XSS Exploitation**: Identify and exploit DOM-based XSS vulnerabilities with the `--mass-dom-xss` feature, increasing your testing efficacy.
-- **Installation Requirements**: Easily install necessary dependencies with the `--install-requirements` option, simplifying setup for users.
+- **Single Recon**: Perform basic reconnaissance on a single target.
+- **Mass Recon**: Perform reconnaissance across multiple targets simultaneously.
+- **Mass JS Finder**: Discover JavaScript files in bulk.
+- **Single SQL Injection**: Test for SQL injection vulnerabilities on a single target.
+- **Mass SQL Injection**: Perform SQL injection checks on multiple targets.
+- **Single XSS**: Test for Cross-Site Scripting (XSS) vulnerabilities on a single target.
+- **Mass XSS**: Perform XSS tests on multiple targets.
+- **Single LFI**: Test for Local File Inclusion vulnerabilities on a single target.
+- **Mass Assessment**: Perform a mass security assessment across multiple targets.
+- **Subdomain Takeover**: Check for subdomain takeover vulnerabilities.
+- **Dirsearch Patrol**: Run Dirsearch to find hidden directories on a target website.
+- **APK Enumeration**: Enumerate APK files to find potential vulnerabilities.
+- **Mass DOM XSS Exploit**: Test for DOM-based XSS vulnerabilities across multiple targets.
+- **Install Requirements**: Automatically installs the necessary dependencies for the tool.
+- **Help**: Display this help message.
 
-## Usage:
-The tool is invoked via command line with various options tailored to specific security assessment tasks. If no arguments are provided, Hades displays a help menu outlining its features and usage.
+## Usage
 
-## Color-Coded Outputs: 
-The script employs color-coded output for improved readability and user experience, making it visually engaging and easy to understand.
+To use the tool, run the script with the desired options:
+./hades [options]
 
-## Getting Started
 
-To get started with Hades, clone this repository and execute the script on your local environment. Ensure that you have the necessary dependencies installed, which can be done effortlessly using the provided installation option.
+### Available Options:
+- `-s`, `--single-recon` : Single Recon
+- `-d`, `--mass-recon` : Mass Recon
+- `-l`, `--mass-js-finder` : Mass JS Finder
+- `-o`, `--single-sql-inject` : Single SQL Injection
+- `-p`, `--mass-sql-inject` : Mass SQL Injection
+- `-x`, `--single-xss` : Single XSS Injection
+- `-w`, `--mass-xss` : Mass XSS Injection
+- `-n`, `--single-lfi` : Single LFI Injection
+- `-m`, `--mass-assessment` : Mass Assessment
+- `-y`, `--sub-takeover` : Subdomain Takeover
+- `-q`, `--dirsearch-patrol` : Dirsearch Patrol
+- `-k`, `--apk-enum` : APK Enumeration
+- `-v`, `--mass-dom-xss` : Mass DOM XSS Exploit
+- `-i`, `--install-requirements` : Install Requirements
+- `-h`, `--help` : Display Help Message
 
-## Disclaimer
+## Installation
 
-Hades is intended for ethical hacking and security testing purposes only. Ensure that you have proper authorization before using it against any system or network.
+Ensure you have `bash` and the required dependencies installed on your system before running the script.
 
-## Image
-![image](https://github.com/user-attachments/assets/81ae34ea-13c5-436d-b424-d7e37cdd9903)
+To install the required dependencies, run:
 
-# Tool Required On Hades
 
-1. figlet
-2. rush
-3. wafw00f
-4. dnsx
-5. git
-6. subjack
-7. seclists
-8. massdns
-9. ffuf
-10. nikto
-11. nmap
-12. golang
-13. subfinder
-14. toilet
-15. pip
-16. npm
-17. zsh
-18. curl
-19. wget
-20. amass
-21. shodan
-22. apkd
-23. fuzzing-templates
-24. kxss
-25. jsfinder
-26. unfurl
-27. subzy
-28. shuffledns
-29. dalfox
-30. Amass
-31. notify
-32. qsreplace
-33. hakrawler
-34. nuclei
-35. httpx
-36. httprobe
-37. waybackurls
-38. assetfinder
-39. fff
-40. anew
-41. interactsh-client
-42. gau
-43. mx-takeover
-44. katana
-45. SubOver
-46. crlfuzz
-47. git-hound
-48. dnsx
-49. massdns resolvers
-50. gf
-51. Gf-Patterns
-52. ghauri
-53. SecretFinder
-54. apkscan
+### Required Tools
+Before running Hades, the following tools should be installed on your system:
 
-## IMPORTANT
-1. Dont forget put your token telegram and apikey on the file
-2. Dont forget to install all requirements before use the tools `-i`
+- `figlet`
+- `rush`
+- `wafw00f`
+- `dnsx`
+- `git`
+- `subjack`
+- `seclists`
+- `massdns`
+- `ffuf`
+- `nikto`
+- `nmap`
+- `golang`
+- `subfinder`
+- `toilet`
+- `pip`
+- `npm`
+- `zsh`
+- `curl`
+- `wget`
+- `amass`
+- `shodan`
+- `apkd`
+- `fuzzing-templates`
+- `kxss`
+- `jsfinder`
+- `unfurl`
+- `subzy`
+- `shuffledns`
+- `dalfox`
+- `Amass`
+- `notify`
+- `qsreplace`
+- `hakrawler`
+- `nuclei`
+- `httpx`
+- `httprobe`
+- `waybackurls`
+- `assetfinder`
+- `fff`
+- `anew`
+- `interactsh-client`
+- `gau`
+- `mx-takeover`
+- `katana`
+- `SubOver`
+- `crlfuzz`
+- `git-hound`
+- `massdns resolvers`
+- `gf`
+- `Gf-Patterns`
+- `ghauri`
+- `SecretFinder`
+- `apkscan`
 
-## ALL Notifications will sended on telegram if you set telegram apikey and token
+Make sure to install these tools using the appropriate installation method for your platform (e.g., `apt`, `brew`, `go get`, `pip install`, `npm install`, etc.).
+
+## Credits
+
+Created by **Joelindra**  
+LinkedIn: [joelindra](https://www.linkedin.com/in/joelindra)
+
+## License
+
+This tool is open-source and released under the [MIT License](LICENSE).
