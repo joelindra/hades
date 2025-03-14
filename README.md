@@ -43,6 +43,8 @@ To use the tool, run the script with the desired options:
 - `-i`, `--install-requirements` : Install Requirements
 - `-h`, `--help` : Display Help Message
 
+![image](https://github.com/user-attachments/assets/ee3c027b-a98a-4403-a392-7553a9282785)
+
 ## Installation
 
 Ensure you have `bash` and the required dependencies installed on your system before running the script.
