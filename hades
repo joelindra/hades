@@ -1,104 +1,66 @@
-#!/bin/bash
-key="b2887019b94113aa8ee6aa3f772de0c8"
-encoded_code="U2FsdGVkX19XH6uRIH8Ws0/qpm2yO0ICRLzofwDR3Le9UxglspBV+UMKnheYau6O
-qUM4M8dGq92R6FbukQDC6KQZgnUoRYrysgPyBrWtFX039/NZjPVIIMY3SIIUPRG6
-2QsCozaVBDJrH2mLfN9VrnAmzYYrU8fqVC5FgM9CNIhDjOqA9l5k1c7eCTtzcNhJ
-e92OVQzUDJpXhRR0717xPitx/A6diYHe5M4g9KkHrh6hzz0JCL6axuaEEL2IpVVQ
-JiWqLPGXl5GM3NL5+Q5m6l3AK8mbBb5EXSmLD+DtnpdQ6QPOqPLRI+l7Qs8EtI9r
-tHComjROgrrVcnZ8errXvoAgS/KEz+GmZTvg0Z1JSWTS+7vMbJPDaDpye7trtzWx
-JxpcN7KC8y94uFOTt+fdWHqIO8rNbk53yvR1GIZvGwgUw2Zlo7oE0Vvy+riVsik+
-CYzlqGMll2vj0qBvdl4mDPJqrHt4d+aGhOlCRFaOAycwaax69pxsZaaPyI9+wZ2/
-M9roWyi9QD35DgcEInZHFgGvZQQN78UX77ZIuVPDJPD/k9ovXcOvtDpuFzwNQZYP
-oRKn0pnkiLIvJDJagMniHXqJmQMsl6XhLvGHL88K3ei05a1MKtah6DHMB9hSZtw7
-0Qw5669CnA1Isf8KK4rS+eu8p2C0k00pPAjWRGaFpYbxVJW9iFSxPCx2SsPSxcGK
-9kwYk9FO5aI/e9r08DpYSMliUIUtLaPbTyedyvjf/ExJGUqZ/YJf2B29pzqIjgCg
-e2Cn9IQSOv3Md2YAs4qcw5zDU/IBMMKBIKxFQ0PnSAGckmc+n8H9Mhlg5oFoVpRH
-6v8HSoNcYO0guijD2txtHKRkftKOn9+hCdXadfYVYrhso46rKPCzAP90vAO/cdJc
-U4IZkmxKUAmSt0Mr7U91rtbgSlPfD+sfxNNUiCRAg7jXa+rIArC0kkfg5H9b0K0y
-MqIL09qiCAknqpH1g3yzJUjNMTGo0TCpEs7CwKPll5mP5ZLuE6SGtM677eapPcwP
-VVB0uZ+9QVcPgK6uU/zS/ZByEXxBsOKl0kLiOWiUln49cDpVvHebd8D6/HzUiVU5
-SPeK2WG7CW2tYOrzsXKcjBVYbplfBAUqo3O98vW2u9MsoVsDzQJrAAWz8KxdzAPS
-ehwOD7kOds+C0QvdMpRjawJxRiDn3fSEBjH29lAzYBJlCJvD0GW6Uo1dGXuIVMf7
-3/Z+YUF4AQpVVHHpdvK3ZgJbrTbq4P7IqjYYSKBiFytYDje6/CL7xVfwoAnG6EJZ
-/NWsY7UsHhuTLbehCsv8X/PBItLQvkGrqAub2WvT3v96yQX0UvsoX8TNmUDYPqga
-YoRTyLfBBAAOmlM8IkBCTKDaDSBwb4ukQRypZ+05PgVYjbnCg/hTFPXA+jdUrm5L
-FjhDgIgvFIOb576bjhj35qteGZ7zI7r6wjIBH1hXUdsgQptsNQT3lA0zvhWJ/reM
-rBq5B7QXPj6xqL63JznCyx9BIpbXbTr9HwUi38ffZkIKWirJh+u4W/LIh1bEfSt0
-/S2Fc04fbervUlFB9OfCK3WjgZUrCfG9xdQ8pcOqE8eF3Aq5VghLNhAoXTD43wg8
-XiRPa1/Jbss5j2Ca2u6JANVWUA8D7buzY7ayUjXfT+IAlzEflrv/AxNe2o5IuhCM
-yLUc8geZDhWT/6asDxuMvy+XTrS7xw4fJ44JVjuGf5eSVW8Mg80lSW5Bx7d4xKgI
-QfkWrTzMDyAoUEZf/9ahOyQlf4ygx/AUWRPAc58m/jdhpIsIx1CREhsC8GK/iZUf
-oeYiJXcaN8RB4ir52+Vj2wOlMobrNn6RpF2/4E0rjikpunLY9Sujq0BCCFNj+DQj
-/wRzfdg+2vm7JSaccObjCDY/qStqSSo5vpZMiIcrB+1AHvKuxY9uoySh7Dt97cV/
-R5qfwjNNOUQWOqceJaqzmb8Sqsyj3leo7ldIa7LC2anerhvZ5/3x1jKTE5OZKKNR
-x3e/+CaC9A/PAnbstf1s038NtZY+VOKe51941LQIJHaZfIP16GgfKMOJGMjiZEue
-Jpn3Cy4ct/+w+4z8IEBAvvEx1UItjuch3e8uQwIVP1EeuWcD3UWRQBd8zqKGHSca
-soQ5krwPPsaApM/Aouffx/3eqNwmSd7riE0JwKmsQlqqQ8ymb8VuMHbvuFzEPbTd
-7tsfeaXH2QYG0W64ue8T5KfBShaMs94ZA1/xC0cCh4Phvym9+Z/BzI5SlIx7RklA
-FgYyfBQo9U685VbI+dAFGDPHR3S3+CKMCpSRh8BIouCxWwt1IrEmb+1I9hrkT8fZ
-3nVsIjrj4U1rnW9QJJgw3Mbmxtw+kgOOrqf+HKv+gdim5MGVaWbDM7Y0/VEtklz8
-gJY9/TVg7wXh6rYNtmr88xaqU0rfm6nKCAuji8MtUhOD/ywoDQ6xt+W6EM6XKyF0
-R4u/YrCffVDL8xR1zkMO7XPrE2lHwRwnRrYoIRfsKhLkPkup5dJE/ulPUtGO4UO+
-/nKEmVYvkG6GRemviFuwz7B90mOy67eOcYWmUja0+wJYYgXGyEI+wWypHBvNFeZN
-OLzHjeuWqWMXKtoPDG0uk09UwBbtk5aGIyB6ATjtW4npOGAx6lHo3hEOuqjso8nw
-CkHdA8byq7MaAuWWDH4UZz3sUUAOxNv7iBRIXf+W1UkjtLNHTX2bSCZtfj/IcZx/
-KmiYPVSEFgQ08nYX+irUpofN3OfjQyT9yo8b7FGAfaVmz2Xz3uIjlYanAwHzNeL6
-g5gaG0E5OMqLlHt8RQ2/jeP+R0JIkBxpePL/pgncZ6tTAR6HZtByI3kGH6aaWKoU
-ci5Azsh6sjEETNHQuys4nSmfg0MpZua91XJ+kyg3nirA4bfA1jIiT57HgUNkWVwr
-GF25wYFKkAryxPrOnxuNfuv8royQOfdr/Eiw5UPxPk8eyqc0p+7KVHKIx8aZ3AAo
-Ik5S8LIhXzYG88dyuhRitLkDqMe6Tx9lVpuqRZENXH27KMcraOXI3NODPktNNy9F
-TF+UoAOUaLMqHPJYPnWsIin/qanZcEeCHy34K2if26THFtcTZPbEK77/4SnTbsk0
-7uUf2r1nUhaUq0BpNVnBwPFu0qiQ4EQiLLRn7rj1GZshri6Lu2iuyhsYPK4D1+TR
-ln19vPVOUMiFDT03KfZXtal98k3l+//ayD16P22q56cKKPIdvVGi67F3+WwjoTYo
-JP7VG8BZTq3qEPVbHifQ9Sk/7RZ3GryEi/9EjwXuGDtSm2fCOBhV9F4o1jiM35VT
-g4Szf+KsjXm6LfE7MOxkCrsIiZ2KzQyvxXqq82qLoMSw+ISJ7bHzkVlOTmnvPjj2
-9gajDvMyeQT471oAexuhO26HeHkTwMjgkQiGnkxbnRlyztI7xAaEkxj9TaY/Bxjz
-mpUlesmN0BIGpSvig7Z0M5S08R9giAlSWDkTJf/joSDM/aUSXpSoyEWnnC3BMxb4
-QsSFEhLcv4f7JebbbsF7L8VTPsLNY8wY+h2hav9QlQa7rK7DHBeK/PWlS1n8bkK5
-ftUY3Op/jFpJvmlSMVDBB8/w6DwI1zW+74sLmaKvVjLIITCUjqWvlhzrgL/k+hnt
-wau+F+wJgU1vXwHC2lWfq6zlB8pfoQAgJY1qRlEXDoq0xsPo9N4DHyV9LaCdfEbY
-LDq7/sUgWHx9/Tp3wA89EAJ8Ju6ljPcd5f4ghIIQl8RduqKjewHww7qluf6L7oj3
-nB5GIVpiJ5DIUm9Exq4ZxvxIm3U+Jh5m7zvqXaexdUVciI//fHm4CKiaVqY1xWpz
-LWUqN+N+Q0qCiylPzWljQhiYT7VqhzdbuQN/MFBwEPYW4V3yEfLLDweGZFyai1Wz
-cIxjZqWr+NVpQCZ0DiWMII1ZYA4ZAY5InuaB+Ts+g/XQ/kPORujpF0tynHpH0KQZ
-UoE5qFU/v/iic4vWh91uznc4L4NBsZ3gVkcIclwxA7DjPqiT+7XpsXtQXK68OS3J
-seyt5SVBgzzNWIJPuu3S4jcgwsuYC7rlUCbDjDK74GrhtpVjwp2upEbfBSujCFlU
-jAP3OY9zQBFxbjjHC+YyNuvSxcpyEp1LLGFuzg2KG+xYQ4BiGvw7kfN/8Nb0O3Kj
-TR4ZC+0diMLUSk/LYHsxLEYISC2SMdMb49ma01OA4BnCRRFWO6vln8RjiKMI9ly2
-yXW7PcSNQWbIqF7PdMTIRJCTCtCwPNZcItMWRiCQMi99mtXVxnN5DNMLDpXcOSfc
-q3pYvlxyU8YH16/bNxm+IsZ+2B8JFBjvM3wYM60z8C/4msa10MbcNMhHuXhjLpoM
-5KDE9UP5Qa4YH3h22aMlDxrgaxnlDAjVdUosQPxVo8YCMKMVB2uZH747hCOi0XT6
-PIevIUFHxVqGF/K8hGfeTHGJXDUBzg8DnSOILUWZ/GD3Ry+iccQW0tntRjhDcgG4
-NSxdOut+Vnu7qt0kxzyhQjiDhZoKaJtrGDiC1jMmmH8THKqmJMo4SAz6kztIel1U
-VbOgS64uT7Z+QuWIpBpioV5x3oLZm5onkWPTg1XvFMxc+E8gmL8+A1+dQlD2VM2O
-Cpeh/lbCo2qBTG2KG7E9v1TtXBvDSH6O3p7ECefD1i41q8fq42DGBm2B+3DlUndL
-HcsKFIkA9o72roXeC6bLU+C7eCg2p7PHwekKuTkE+kdg0+nb/QGe5IoBW3usyx07
-l3Orlu+yVmEdH+vVgdBn20NxYod/y9TrPH4Z6i0+NSj2qW3n1RL4jiXqlUTVGniM
-WVsG1leAA4tkSqcTdyg1Sm0QPb2O0bHa6OwoFsXdRsRiS5q8VlxiTBEGy+HqXpcK
-zWVFjnwuM5HO8GKncrPyrzkAvecbYub2a+P1/uQ57xE+QgWvi64HK/m2/WPhYwoM
-ieHllQlf+ZVFKJ/99JQHCzjSYgu4CNgWMKCkChzTwVcw7eYgo/2FMHn2BzJ/en1S
-9cczdtwt7B3XUwXta/ZKbGHsp7D56Gm1GnDu6edupYZjSdhCG6FbOBE/9UKDjXFB
-dElL5JkXzfESbbu+bgPCeAIeG5VNg8dM8CvszICnHI5FtzW2kvE9MLo+fF431RxZ
-G8W1DC9dJNTXAYxPvikbfyLRuTQb8tsh5xAzB4vb4J3Z+6DHaWhLQLX4mtlHP8oH
-oz2awgSRI0o7Ii/eGlvz7lTgBZ+5eX1PUH0wYmWel4osP6ufwyugsRyoIGtvhPc2
-XERIIBgIwzBQDjOlbLRzCifera6gx9EUJMk0nsQtnFN/P339kyzPKkG9d71GzGMu
-xTpZWKJhhjjNWCUjK/cTP5JBjZSl7Osh8KdDMK5EcSIQFjPb3/BWm/n9iYyonbLH
-4xSWZjMuJcbdg/1SXCviMQW53SRhHwVSEPY6V/XCD+1xBpnRBH/Ge/6sPmH7J7j9
-L1+ZF1ezvVEiVskYTeEMpc+vb9E5lxx2VDRQCe1lSztEbUIk754Nh4a1CC3UOI4O
-3lJ95/osiUT3hxbw9MUP86VJ+c1zk0Fl4u8OvScqrd6RDWoLIOEwCTyVsuSoe4OD
-PDYuvpBmjkx+eqg0oAZy46F+q/X1vixKXLzgLQkRE5vnb2XyF1EjFBOcaKUhZU43
-NSMdMMcqpSyHx4fjuF0PkmhRa2/HlGIAK2jEjt5rQhMxDp4fQkn5917dnzpQGC0R
-iKyBo5DDVGB4Re/QScFqlp5iBBRkn8xqh7w6LVk0zNXmRsQfG466By8tIcwZmu9c
-OTuBIS36pBybhimlYzxB8jTNbWT14UEZiNRwC0mssmLY4NSEiShIN3v7SVDmw24m
-bmPH+Xi58OogKbUXS0DrXvrFudsQ414plIKzMDBFleoV/GKDl7QNSrLwQtcUqHti
-sS2Xzkp0wJX2QgtvrR0vdqieIGTNuUn0cdvIDV4KUDUOjRPSqJYEkvh4PHejQrn4
-6SZyoWJOaX35mmoSdiTsEgkEW6qY9l2scg3iRBrC4Zew3g+vVZvAyKhGmY4e6rBz
-Yrh1RUVuPAjkunUf8j2RHKi7xvMncXitmRa1WmlrgjQbNgVjzRUGmce1OHmVTrKV
-gk/4DlUToLLerKXUHduTlkxhAFeT6C+t8tzeLPqPbXfItQSMNnSfYQX7zSqvU3ya
-vsZQdBf8uDccK6Jef8BHhS77XwR4U3Tn4fkX9J2kzY061EvzOKaC98jWo/VL4Fcs
-J6OyU6CInnGbRNGAN037xFkxVnqVmIwkLVbOERE9aKOUaqRIewg8W8dsYdnPAwMB
-80qeeUC0Ruec3l6k6Jgmz9xpxtY1FyukBSfi80AcjRNa5/DR6NAqEv3Yh25q42sR
-3LAVyHwib0MVSgE988nw8kpVWvM3sKXyEojqGH66YGyBFHOiA39ihPqpBcZYMAv2
-mwZ7hTOBN7x+LIidefgH3lsJv6T3UD4B3VzmlpM3gSDesSQ9gmR+yvHewzIdLpAh
-KbzXcAX1XfPYWszCww17qg=="
-eval "$(echo -n "$encoded_code" | openssl enc -d -aes-256-cbc -pbkdf2 -base64 -k "$key")"
+#!/usr/bin/bash
+
+# Color Definitions
+RED='\e[31m'
+CYAN='\e[36m'
+GREEN='\e[32m'
+YELLOW='\e[93m'
+RESET='\e[0m'
+
+
+# Function to display help message
+display_help() {
+    echo -e "$CYAN"
+    echo -e "Usage: ./hades [options]"
+    echo -e "Created by $GREEN joelindra | $YELLOW Linkedin: joelindra $RESET"
+    echo -e "\nAvailable Options:"
+    echo -e "  $CYAN-s, $GREEN --single-recon        $CYAN Single Recon"
+    echo -e "  $CYAN-d, $GREEN --mass-recon          $CYAN Mass Recon"
+    echo -e "  $CYAN-l, $GREEN --mass-js-finder      $CYAN Mass JS Finder"
+    echo -e "  $CYAN-o, $GREEN --single-sql-inject   $CYAN Single SQL Injection"
+    echo -e "  $CYAN-p, $GREEN --mass-sql-inject     $CYAN Mass SQL Injection"
+    echo -e "  $CYAN-x, $GREEN --single-xss          $CYAN Single XSS Injection"
+    echo -e "  $CYAN-w, $GREEN --mass-xss            $CYAN Mass XSS Injection"
+    echo -e "  $CYAN-n, $GREEN --single-lfi          $CYAN Single LFI Injection"
+    echo -e "  $CYAN-m, $GREEN --mass-assessment     $CYAN Mass Assessment"
+    echo -e "  $CYAN-y, $GREEN --sub-takeover        $CYAN Subdomain Takeover"
+    echo -e "  $CYAN-q, $GREEN --dirsearch-patrol    $CYAN Dirsearch Patrol"
+    echo -e "  $CYAN-k, $GREEN --apk-enum            $CYAN APK Enumeration"
+    echo -e "  $CYAN-v, $GREEN --mass-dom-xss        $CYAN Mass DOM XSS Exploit"
+    echo -e "  $CYAN-i, $GREEN --install-requirements$CYAN Install Requirements (Important)"
+    echo -e "  $CYAN-h, $GREEN --help                $CYAN Display this help message"
+    echo -e "$RESET"
+}
+
+# Function to handle the main logic based on options
+handle_option() {
+    case "$1" in
+        -s|--single-recon) source "./function/singlerecon.sh" ;;
+        -d|--mass-recon) source "./function/massrecon.sh" ;;
+        -l|--mass-js-finder) source "./function/massjsfinder.sh" ;;
+        -o|--single-sql-inject) source "./function/ssqlinject.sh" ;;
+        -p|--mass-sql-inject) source "./function/masssqlinject.sh" ;;
+        -x|--single-xss) source "./function/singlexss.sh" ;;
+        -w|--mass-xss) source "./function/massxss.sh" ;;
+        -n|--single-lfi) source "./function/singlelfi.sh" ;;
+        -m|--mass-assessment) source "./function/massassessment.sh" ;;
+        -y|--sub-takeover) source "./function/subover.sh" ;;
+        -q|--dirsearch-patrol) source "./function/dirsearchpatrol.sh" ;;
+        -k|--apk-enum) source "./function/apkenum.sh" ;;
+        -v|--mass-dom-xss) source "./function/massdomxss.sh" ;;
+        -i|--install-requirements) source "./function/installreq.sh" ;;
+        -h|--help) display_help; exit 0 ;;
+        *) echo -e "${RED}Invalid option: $1${RESET}"; display_help; exit 1 ;;
+    esac
+}
+
+# Main program starts here
+if [[ $# -eq 0 ]]; then
+    display_help
+    exit 0
+fi
+
+# Loop through options passed to the script
+for option in "$@"; do
+    handle_option "$option"
+done
