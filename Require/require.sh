@@ -150,7 +150,7 @@ git clone "$REPO_URL"
 cd "$REPO_DIR" || exit
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -e .
+pip install -e . --break-system-packages
 cd ../
 }
 apks
