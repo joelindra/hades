@@ -1,82 +1,138 @@
-#!/usr/bin/bash
-
-# Color Definitions
-RED='\e[31m'
-CYAN='\e[36m'
-GREEN='\e[32m'
-YELLOW='\e[93m'
-RESET='\e[0m'
-
-# Enable script to exit on error
-set -e
-
-# Valid options (sorted by relevance)
-declare -A options_map=(
-    [-d]="massrecon.sh"          # Mass Recon (more common for larger-scale scanning)
-    [-s]="singlerecon.sh"        # Single Recon (specific but common for a single target)
-    [-p]="masssqlinject.sh"      # Mass SQL Injection (important for vulnerability scanning)
-    [-o]="ssqlinject.sh"         # Single SQL Injection (specific attack)
-    [-w]="massxss.sh"            # Mass XSS Injection (common web vulnerability)
-    [-x]="singlexss.sh"          # Single XSS Injection (specific but common)
-    [-n]="singlelfi.sh"          # Single LFI Injection (specific vulnerability)
-    [-m]="massassessment.sh"     # Mass Assessment (general security assessment)
-    [-v]="massdomxss.sh"         # Mass DOM XSS Exploit (web security)
-    [-y]="subover.sh"            # Subdomain Takeover (specific attack, but increasingly relevant)
-    [-q]="dirsearchpatrol.sh"    # Dirsearch Patrol (useful but less frequent)
-    [-l]="massjsfinder.sh"       # Mass JS Finder (niche but useful for web apps)
-    [-i]="installreq.sh"         # Install Requirements (important for initial setup)
-    [-h]="help.sh"               # Help (always relevant but used last)
-)
-
-# Function to display help message
-display_help() {
-    clear
-    echo -e "$CYAN"
-    echo -e "Usage: ./hades [options]"
-    echo -e "Created by $GREEN joelindra | $YELLOW Linkedin: joelindra $RESET"
-    echo -e "\nAvailable Options:"
-    echo -e "  $CYAN-d, $GREEN --mass-recon          $CYAN Mass Recon"
-    echo -e "  $CYAN-s, $GREEN --single-recon        $CYAN Single Recon"
-    echo -e "  $CYAN-p, $GREEN --mass-sql-inject     $CYAN Mass SQL Injection"
-    echo -e "  $CYAN-o, $GREEN --single-sql-inject   $CYAN Single SQL Injection"
-    echo -e "  $CYAN-w, $GREEN --mass-xss            $CYAN Mass XSS Injection"
-    echo -e "  $CYAN-x, $GREEN --single-xss          $CYAN Single XSS Injection"
-    echo -e "  $CYAN-n, $GREEN --single-lfi          $CYAN Single LFI Injection"
-    echo -e "  $CYAN-m, $GREEN --mass-assessment     $CYAN Mass Assessment"
-    echo -e "  $CYAN-v, $GREEN --mass-dom-xss        $CYAN Mass DOM XSS Exploit"
-    echo -e "  $CYAN-y, $GREEN --sub-takeover        $CYAN Subdomain Takeover"
-    echo -e "  $CYAN-q, $GREEN --dirsearch-patrol    $CYAN Dirsearch Patrol"
-    echo -e "  $CYAN-l, $GREEN --mass-js-finder      $CYAN Mass JS Finder (secret)"
-    echo -e "  $CYAN-i, $GREEN --install-requirements$RED Install Requirements (Important)"
-    echo -e "  $CYAN-h, $GREEN --help                $CYAN Display this help message"
-    echo -e "$RESET"
-}
-
-# Function to handle the main logic based on options
-handle_option() {
-    script="${options_map[$1]}"
-    if [[ -n "$script" ]]; then
-        source "./function/$script" || { echo -e "${RED}Failed to source $script${RESET}"; exit 1; }
-    else
-        echo -e "${RED}Invalid option: $1${RESET}"
-        display_help
-        exit 1
-    fi
-}
-
-# Main program starts here
-if [[ $# -eq 0 ]]; then
-    display_help
-    exit 1
-fi
-
-# Loop through options passed to the script
-for option in "$@"; do
-    # Ensure the option is valid
-    if [[ -z "${options_map[$option]}" ]]; then
-        echo -e "${RED}Invalid option: $option${RESET}"
-        display_help
-        exit 1
-    fi
-    handle_option "$option"
-done
+#!/bin/bash
+key="7f5bd9aa04291acc0024799542e2f55e"
+encoded_code="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"
+eval "$(echo -n "$encoded_code" | openssl enc -d -aes-256-cbc -pbkdf2 -base64 -k "$key")"
