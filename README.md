@@ -118,11 +118,10 @@ This tool is designed for ethical hacking and security assessment purposes. Alwa
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 👥 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
-
 ## 🙏 Acknowledgements
+
+![image](https://github.com/user-attachments/assets/d2e57c02-845a-4c3f-9c52-d8a6c7d42613)
+
 
 Special thanks to the security community and the developers of the tools integrated within HADES.
 
