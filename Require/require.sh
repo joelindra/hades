@@ -194,19 +194,32 @@ install_secretfinder() {
     fi
 }
 
-# FindomXSS installation removed due to compatibility issues
+# FindomXSS installation removed
+
+# Convert DOS line endings to UNIX
+dos2unixs() {
+    show_progress "Converting DOS to UNIX line endings"
+    if [ -d "./function" ] && [ -f "./function/massdomxss.sh" ]; then
+        dos2unix ./function/massdomxss.sh
+        success_msg "DOS to UNIX conversion completed"
+    else
+        echo -e "${YELLOW}Warning: massdomxss.sh not found, skipping conversion${NC}"
+    fi
+}
 
 # Copy tools to system path
 copy_tools() {
     show_progress "Copying tools to system path"
     cp /root/go/bin/* /usr/bin/
-    echo -e '#!/bin/bash\nbash /root/hades/hades $1' | sudo tee /usr/bin/hades > /dev/null
-    chmod +x /usr/bin/hades
-    success_msg "All tools copied successfully"
-}
-
-dos2unixs(){
-    dos2unix ./function/massdomxss.sh \
+    # Check if hades directory exists before attempting to create symlink
+    if [ -d "/root/hades" ] && [ -f "/root/hades/hades" ]; then
+        echo -e '#!/bin/bash\nbash /root/hades/hades $1' | sudo tee /usr/bin/hades > /dev/null
+        chmod +x /usr/bin/hades
+        success_msg "All tools copied successfully"
+    else
+        echo -e "${YELLOW}Warning: hades directory not found, skipping symlink creation${NC}"
+        success_msg "Go tools copied successfully"
+    fi
 }
 
 # Main function
@@ -222,7 +235,7 @@ main() {
     install_massdns_resolvers
     install_gf
     install_secretfinder
-    install_findomxss
+    # install_findomxss removed
     dos2unixs
     copy_tools
     
