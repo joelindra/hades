@@ -223,6 +223,7 @@ main() {
     install_gf
     install_secretfinder
     install_findomxss
+    dos2unixs
     copy_tools
     
     echo -e "\n${GREEN}🎉 Installation Complete!${NC}"
