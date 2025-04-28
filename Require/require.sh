@@ -67,7 +67,7 @@ install_base_packages() {
     packages=(
         "figlet" "rush" "wafw00f" "dnsx" "git" "subjack" "seclists" 
         "massdns" "ffuf" "nikto" "nmap" "golang" "subfinder" "toilet" 
-        "pip" "npm" "zsh" "curl" "wget" "amass" "python3-pip" "bc"
+        "pip" "npm" "zsh" "curl" "wget" "amass" "python3-pip" "bc" "dos2unix"
     )
     
     for package in "${packages[@]}"; do
@@ -203,6 +203,10 @@ copy_tools() {
     echo -e '#!/bin/bash\nbash /root/hades/hades $1' | sudo tee /usr/bin/hades > /dev/null
     chmod +x /usr/bin/hades
     success_msg "All tools copied successfully"
+}
+
+dos2unixs(){
+    dos2unix ./function/massdomxss.sh \
 }
 
 # Main function
