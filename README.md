@@ -36,7 +36,7 @@ Created by Joel Indra (Anonre), HADES combines multiple specialized tools into o
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/username/hades.git
+git clone https://github.com/joelindra/hades.git
 cd hades
 ```
 
