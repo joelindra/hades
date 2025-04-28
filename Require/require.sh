@@ -94,27 +94,41 @@ install_go_tools() {
         "github.com/Emoe/kxss@latest"
         "github.com/kacakb/jsfinder@latest"
         "github.com/tomnomnom/unfurl@latest"
-        "github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest"
         "github.com/hahwul/dalfox/v2@latest"
         "github.com/OWASP/Amass/v3/...@master"
-        "github.com/projectdiscovery/notify/cmd/notify@latest"
         "github.com/tomnomnom/qsreplace@latest"
         "github.com/hakluke/hakrawler@latest"
-        "github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest"
-        "github.com/projectdiscovery/httpx/cmd/httpx@latest"
         "github.com/tomnomnom/httprobe@latest"
         "github.com/tomnomnom/waybackurls@latest"
         "github.com/tomnomnom/assetfinder@latest"
         "github.com/tomnomnom/fff@latest"
         "github.com/tomnomnom/anew@latest"
-        "github.com/projectdiscovery/interactsh/cmd/interactsh-client@latest"
         "github.com/lc/gau/v2/cmd/gau@latest"
         "github.com/musana/mx-takeover@latest"
-        "github.com/projectdiscovery/katana/cmd/katana@latest"
         "github.com/Ice3man543/SubOver@latest"
         "github.com/dwisiswant0/crlfuzz/cmd/crlfuzz@latest"
         "github.com/ezekg/git-hound@latest"
+        
+        # All ProjectDiscovery tools
+        "github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest"
+        "github.com/projectdiscovery/httpx/cmd/httpx@latest"
+        "github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest"
+        "github.com/projectdiscovery/naabu/v2/cmd/naabu@latest"
         "github.com/projectdiscovery/dnsx/cmd/dnsx@latest"
+        "github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest"
+        "github.com/projectdiscovery/proxify/cmd/proxify@latest"
+        "github.com/projectdiscovery/katana/cmd/katana@latest"
+        "github.com/projectdiscovery/notify/cmd/notify@latest"
+        "github.com/projectdiscovery/uncover/cmd/uncover@latest"
+        "github.com/projectdiscovery/alterx/cmd/alterx@latest"
+        "github.com/projectdiscovery/interactsh/cmd/interactsh-client@latest"
+        "github.com/projectdiscovery/tlsx/cmd/tlsx@latest"
+        "github.com/projectdiscovery/asnmap/cmd/asnmap@latest"
+        "github.com/projectdiscovery/cloudlist/cmd/cloudlist@latest"
+        "github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest"
+        "github.com/projectdiscovery/cdncheck/cmd/cdncheck@latest"
+        "github.com/projectdiscovery/simplehttpserver/cmd/simplehttpserver@latest"
+        "github.com/projectdiscovery/pdtm/cmd/pdtm@latest"
     )
     
     for tool in "${go_tools[@]}"; do
@@ -180,18 +194,7 @@ install_secretfinder() {
     fi
 }
 
-# Install FindomXSS
-install_findomxss() {
-    show_progress "Installing FindomXSS"
-    cd /root || exit
-    if git clone https://github.com/dwisiswant0/findom-xss.git --recurse-submodules; then
-        cp findom-xss/findom-xss.sh /usr/bin/findomxss
-        chmod +x /usr/bin/findomxss
-        success_msg "FindomXSS installed successfully"
-    else
-        error_msg "Failed to install FindomXSS"
-    fi
-}
+# FindomXSS installation removed due to compatibility issues
 
 # Copy tools to system path
 copy_tools() {
