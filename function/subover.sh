@@ -14,7 +14,7 @@ display_banner() {
     figlet -w 100 -f small "Subdomain Takeover Scanner"
     echo -e "${NC}"
     echo -e "${MAGENTA}[*] Advanced Subdomain Analysis Tool${NC}"
-    echo -e "${MAGENTA}[*] Created by: Your Name${NC}"
+    echo -e "${MAGENTA}[*] Created by: Anonre${NC}"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 }
 
