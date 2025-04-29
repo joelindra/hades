@@ -59,11 +59,21 @@ enumerate_domain() {
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 }
 
+probe_http() {
+    echo -e "\n${BLUE}[+] Probing for live hosts...${NC}"
+    cat $domain/sources/all.txt | httprobe | tee $domain/result/httpx/httpx.txt
+    
+    total_live=$(wc -l < "$domain/result/httpx/httpx.txt")
+    echo -e "${GREEN}[✓] Found ${total_live} live hosts${NC}"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+}
+
+
 # Run Dirsearch on targets
 run_dirsearch_patrol() {
     echo -e "\n${BLUE}[+] Starting Dirsearch Patrol...${NC}"
     
-    total_targets=$(wc -l < "$domain/sources/all.txt")
+    total_targets=$(wc -l < "$domain/result/httpx/httpx.txt")
     current=0
     found_dirs=0
     
@@ -142,6 +152,7 @@ main() {
     input_target
     check_waf
     enumerate_domain
+    probe_http
     run_dirsearch_patrol
     send_to_telegram
     echo -e "\n${GREEN}[✓] Dirsearch patrol completed successfully!${NC}\n"
