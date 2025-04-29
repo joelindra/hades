@@ -13,8 +13,8 @@ display_banner() {
     echo -e "${BLUE}"
     figlet -w 100 -f small "Subdomain Takeover Scanner"
     echo -e "${NC}"
-    echo -e "${MAGENTA}[*] Advanced Subdomain Analysis Tool${NC}"
-    echo -e "${MAGENTA}[*] Created by: Anonre${NC}"
+    echo -e "${MAGENTA}[] Advanced Subdomain Analysis Tool${NC}"
+    echo -e "${MAGENTA}[] Created by: Anonre${NC}"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 }
 
@@ -37,16 +37,16 @@ check_waf() {
 # Domain enumeration
 enumerate_domains() {
     echo -e "\n${BLUE}[+] Starting Domain Enumeration...${NC}"
-    
+
     # Create directory structure
     mkdir -p $domain/{sources,result/{takeover,httpx}}
-    
+
     echo -e "${MAGENTA}[*] Running Subfinder...${NC}"
     subfinder -d $domain -o $domain/sources/subfinder.txt
-    
+
     echo -e "${MAGENTA}[*] Running Assetfinder...${NC}"
     assetfinder -subs-only $domain | tee $domain/sources/assetfinder.txt
-    
+
     cat $domain/sources/*.txt > $domain/sources/all.txt
     echo -e "${GREEN}[✓] Domain enumeration completed${NC}"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -77,7 +77,7 @@ check_takeover() {
 # Send results to Telegram
 send_to_telegram() {
     echo -e "\n${BLUE}[+] Sending results to Telegram...${NC}"
-    
+
     # Load credentials
     token=$(cat telegram_token.txt)
     chat_id=$(cat telegram_chat_id.txt)
