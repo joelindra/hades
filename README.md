@@ -109,6 +109,9 @@ HADES can be executed using the main script with various command-line options:
 # Run a comprehensive security assessment
 ./hades -m
 ```
+## Mindmap - WorkFlow
+
+![Untitled](https://github.com/user-attachments/assets/fc15fb7c-1d9d-4f51-abdd-e98aea954a19)
 
 ## 🔒 Security Note
 
