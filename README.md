@@ -117,4 +117,7 @@ Project Link: [https://github.com/anonre/hades](https://github.com/anonre/hades)
 
 ---
 
+![image](https://github.com/user-attachments/assets/0c97b804-cd86-4164-a264-8cb696a7a617)
+
+
 ⚡ Developed with passion by the Phantom Security Initiative
