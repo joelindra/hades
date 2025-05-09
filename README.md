@@ -1,64 +1,58 @@
-# HADES v4
+# HADESv5 - Phantom Security Initiative
+## 🛡️ Overview
 
-## 🔥 Overview
+HADES (Advanced Security Testing & Vulnerability Assessment) is a comprehensive security testing framework designed for penetration testers, security researchers, and DevSecOps professionals. This toolkit provides a unified command-line interface for various security testing modules, enabling efficient vulnerability discovery and assessment.
 
-HADES is a comprehensive security testing and assessment tool designed to automate and simplify various security tasks for penetration testers, security researchers, and ethical hackers. The tool provides a unified interface for reconnaissance, vulnerability scanning, and penetration testing across multiple targets.
-
-Created by Joel Indra (Anonre), HADES combines multiple specialized tools into one powerful security testing framework.
+Developed by Joel Indra (Anonre), HADES offers a streamlined approach to security testing with an emphasis on usability and comprehensive reporting.
 
 ## ✨ Features
 
-### Reconnaissance Tools
-- **Mass Reconnaissance** - Automated scanning of multiple targets
-- **Single Recon** - Detailed information gathering for individual targets
+HADES combines multiple security testing tools into a single framework with a user-friendly interface and comprehensive reporting capabilities:
 
-### Injection Testing
-- **SQL Injection Testing** (Mass & Single target)
-- **Cross-Site Scripting (XSS) Scanner** (Mass & Single target)
-- **Local File Inclusion (LFI) Testing**
+### 🔍 Reconnaissance Tools
+- **Mass Reconnaissance** - Automated discovery and information gathering for multiple targets
+- **Single Target Reconnaissance** - Detailed information gathering focused on a specific target
 
-### Assessment Tools
-- **Complete Security Assessment** - Comprehensive vulnerability scanning
-- **DOM XSS Vulnerability Scanner** - Detect DOM-based XSS vulnerabilities
+### 💉 Injection Testing
+- **SQL Injection** - Test targets for SQL injection vulnerabilities (both mass and single target)
+- **Cross-Site Scripting (XSS)** - Identify XSS vulnerabilities with mass or targeted scanning
+- **Local File Inclusion (LFI)** - Test for local file inclusion vulnerabilities
 
-### Special Tools
-- **Subdomain Takeover Scanner** - Identify potential subdomain takeover vulnerabilities
-- **Directory Enumeration Tool** - Discovery of hidden directories and files
-- **JavaScript File Discovery** - Locate and analyze JavaScript files for vulnerabilities
+### 📊 Assessment Tools
+- **Complete Security Assessment** - Comprehensive vulnerability scanning and assessment
 
-## 🛠️ Installation
+### 🧰 Special Tools
+- **Subdomain Takeover Scanner** - Identify vulnerable subdomains
+- **Directory Enumeration** - Discover hidden directories and files
+- **JavaScript File Discovery** - Find and analyze JavaScript files
+- **CORS Misconfiguration Detection** - Identify Cross-Origin Resource Sharing issues
+- **CSRF Vulnerability Scanner** - Detect Cross-Site Request Forgery vulnerabilities
 
-### Prerequisites
-- Bash shell environment
-- Internet connection for dependency installation
+## 🚀 Installation
 
-### Quick Installation
-
-1. Clone the repository:
 ```bash
-git clone https://github.com/joelindra/hades.git
+# Clone the repository
+git clone https://github.com/anonre/hades.git
+
+# Navigate to the directory
 cd hades
-```
 
-2. Make the script executable:
-```bash
+# Make the script executable
 chmod +x hades
-```
 
-3. Install requirements:
-```bash
+# Install required dependencies
 ./hades -i
 ```
 
-## 📚 Usage
+## 📖 Usage
 
-HADES can be executed using the main script with various command-line options:
+HADES offers a variety of command-line options for different security testing scenarios:
 
 ```bash
 ./hades [options]
 ```
 
-### Available Options
+### Command Options
 
 #### Reconnaissance Tools
 - `-d, --mass-recon` - Mass Reconnaissance Scanning
@@ -73,61 +67,64 @@ HADES can be executed using the main script with various command-line options:
 
 #### Assessment Tools
 - `-m, --mass-assessment` - Complete Security Assessment
-- `-v, --mass-dom-xss` - DOM XSS Vulnerability Scanner
 
 #### Special Tools
 - `-y, --sub-takeover` - Subdomain Takeover Scanner
 - `-q, --dirsearch-patrol` - Directory Enumeration Tool
 - `-l, --mass-js-finder` - JavaScript File Discovery
+- `-k, --mass-cors` - Mass Auto CORS Detection
+- `-u, --mass-csrf` - Mass Auto CSRF Detection
 
-#### System
+#### System Management
 - `-i, --install-requirements` - Install Required Dependencies
 - `-h, --help` - Display Help Message
 
-## 📋 Examples
+## 🔧 Examples
 
-### Basic Reconnaissance
 ```bash
+# Display help
+./hades --help
+
+# Install required dependencies
+./hades --install-requirements
+
 # Run reconnaissance on a single target
-./hades -s
+./hades --single-recon
 
-# Run mass reconnaissance on multiple targets
-./hades -d
+# Run a complete security assessment
+./hades --mass-assessment
+
+# Test for SQL injections on a single target
+./hades --single-sql-inject
+
+# Run directory enumeration
+./hades --dirsearch-patrol
 ```
 
-### Vulnerability Testing
-```bash
-# Test for SQL injection vulnerabilities on multiple targets
-./hades -p
+## ⚠️ Disclaimer
 
-# Scan for XSS vulnerabilities on a single target
-./hades -x
-```
+HADES is designed for legal security testing with proper authorization. Unauthorized security testing may violate laws and regulations. Always ensure you have explicit permission before testing any systems or applications.
 
-### Complete Assessment
-```bash
-# Run a comprehensive security assessment
-./hades -m
-```
-## Mindmap - WorkFlow
+## 🤝 Contributing
 
-![Untitled](https://github.com/user-attachments/assets/fc15fb7c-1d9d-4f51-abdd-e98aea954a19)
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 🔒 Security Note
-
-This tool is designed for ethical hacking and security assessment purposes. Always ensure you have proper authorization before testing any target. Unauthorized testing may be illegal and unethical.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgements
+## 📞 Contact
 
-![image](https://github.com/user-attachments/assets/d2e57c02-845a-4c3f-9c52-d8a6c7d42613)
+Joel Indra (Anonre) - [GitHub Profile](https://github.com/anonre)
 
-
-Special thanks to the security community and the developers of the tools integrated within HADES.
+Project Link: [https://github.com/anonre/hades](https://github.com/anonre/hades)
 
 ---
 
-Created with ❤️ by Joel Indra (Anonre)
+⚡ Developed with passion by the Phantom Security Initiative
