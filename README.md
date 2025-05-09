@@ -32,7 +32,7 @@ HADES combines multiple security testing tools into a single framework with a us
 
 ```bash
 # Clone the repository
-git clone https://github.com/anonre/hades.git
+git clone https://github.com/joelindra/hades.git
 
 # Navigate to the directory
 cd hades
