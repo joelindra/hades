@@ -129,6 +129,7 @@ install_go_tools() {
         "github.com/projectdiscovery/simplehttpserver/cmd/simplehttpserver@latest"
         "github.com/projectdiscovery/pdtm/cmd/pdtm@latest"
         "github.com/KathanP19/Gxss@latest"
+        "github.com/c1phy/sqltimer/cmd/sqltimer@latest"
     )
     
     for tool in "${go_tools[@]}"; do
