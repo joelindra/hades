@@ -166,7 +166,7 @@ test_sqli() {
     fi
     
     # Check if SQL injection patterns file exists
-    if [[ ! -f "$workspace/result/gf/sqli.txt" ]] || [[ ! -s "$workspace/result/gf/sqli.txt" ]]; then
+    if [[ ! -f "$domain/result/gf/sqli.txt" ]] || [[ ! -s "$domain/result/gf/sqli.txt" ]]; then
         echo -e "${RED}[!] No SQL injection patterns found to test${NC}"
         return 1
     fi
@@ -192,15 +192,15 @@ EOF
     fi
     
     # Count total URLs to test
-    total_urls=$(wc -l < "$workspace/result/gf/sqli.txt")
+    total_urls=$(wc -l < "$domain/result/gf/sqli.txt")
     echo -e "${MAGENTA}[*] Testing $total_urls potential SQL injection endpoints...${NC}"
     
     # Run SQL injection testing
-    cat "$workspace/result/gf/sqli.txt" | sqltimer -payloads "$payloads_file" -sleep 10 -threads 20 -encode 2>/dev/null | tee "$workspace/result/sqli/vulnerable.txt"
+    cat "$domain/result/gf/sqli.txt" | sqltimer -payloads "$payloads_file" -sleep 10 -threads 20 -encode 2>/dev/null | tee "$domain/result/sqli/vulnerable.txt"
     
     # Check results
-    if [[ -f "$workspace/result/sqli/vulnerable.txt" ]]; then
-        vuln_count=$(grep -c "VULNERABLE" "$workspace/result/sqli/vulnerable.txt" 2>/dev/null || echo "0")
+    if [[ -f "$domain/result/sqli/vulnerable.txt" ]]; then
+        vuln_count=$(grep -c "VULNERABLE" "$domain/result/sqli/vulnerable.txt" 2>/dev/null || echo "0")
         if [[ $vuln_count -gt 0 ]]; then
             echo -e "${RED}[!] Found $vuln_count potential SQL injection vulnerabilities!${NC}"
         else
