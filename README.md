@@ -155,8 +155,8 @@ HADES features a beautiful command-line interface with:
 
 ```
 hades/
-├── hades                   # Main executable script
-├── function/              # Module directory
+├── hades                 # Main executable script
+├── function/             # Module directory
 │   ├── m-recon.sh        # Mass reconnaissance
 │   ├── s-recon.sh        # Single reconnaissance
 │   ├── s-port.sh         # Port scanning
@@ -173,7 +173,7 @@ hades/
 │   ├── m-cors.sh         # CORS testing
 │   └── all-req.sh        # Dependency installer
 ├── logs/                 # Session logs
-└── README.md            # This file
+└── README.md             # This file
 ```
 
 ## ⚠️ Legal Disclaimer
