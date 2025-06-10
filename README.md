@@ -1,13 +1,5 @@
 # HADES - Elegant Security Testing Framework
 
-<div align="center">
-
-```
-╦ ╦╔═╗╔╦╗╔═╗╔═╗
-╠═╣╠═╣ ║║║╣ ╚═╗
-╩ ╩╩ ╩═╩╝╚═╝╚═╝
-```
-
 **Security Testing Framework v6.0**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -247,9 +239,7 @@ If you find HADES useful, please:
 
 ---
 
-<div align="center">
-
-**Made with ❤️ for the cybersecurity community**
+![image](https://github.com/user-attachments/assets/c8c2f079-bda2-43d0-b404-e8df689381ab)
 
 *Remember: With great power comes great responsibility*
 
