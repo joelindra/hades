@@ -1,4 +1,4 @@
-# HADES - Elegant Security Testing Framework v7
+# HADES - Security Framework From HELL v7
 
 *An elegant and comprehensive security testing toolkit for penetration testers and bug bounty hunters*
 
