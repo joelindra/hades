@@ -235,6 +235,8 @@ main() {
 
     dos2unix ../function/dirsearchpatrol.sh
     dos2unix ../function/masssqlinject.sh
+    dos2unix ../function/weak.sh
+    dos2unix ../function/client.sh
 
     echo "Installation Complete!"
 }
