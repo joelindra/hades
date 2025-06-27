@@ -124,7 +124,7 @@ display_help() {
     echo -e "  ${COLORS[BRIGHT]}-r ${COLORS[MUTED]}--info-test     ${COLORS[BRIGHT]}Information Gathering - UPCOMING${RESET}\n"
 
     echo -e "${COLORS[BRIGHT]}${BOLD}--- More Info ---${RESET}\n" # Simplified header
-    echo -e "${COLORS[BRIGHT]}Usage: ${COLORS[MUTED]}./hades-temp.sh [options]${RESET}"
+    echo -e "${COLORS[BRIGHT]}Usage: ${COLORS[MUTED]}./hades [options]${RESET}"
     echo -e "${COLORS[BRIGHT]}Repo:  ${COLORS[SUCCESS]}https://github.com/joelindra/hades${RESET}\n"
 }
 
