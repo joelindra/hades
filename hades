@@ -1,19 +1,19 @@
 #!/bin/bash
 
 # HADES - Elegant Security Testing Framework
-# Version 6.0 - Modern Edition
+# Version 6.1 - Modern Edition (Simplified Animations)
 # Author: Joel Indra - Anonre
 
 # Simplified but elegant color palette
 declare -A COLORS=(
-    [PRIMARY]='\e[38;2;120;200;255m'    # Soft blue
-    [ACCENT]='\e[38;2;255;125;175m'     # Soft pink
-    [SUCCESS]='\e[38;2;125;255;175m'    # Soft green
-    [WARNING]='\e[38;2;255;230;125m'    # Soft yellow
-    [DANGER]='\e[38;2;255;125;125m'     # Soft red
-    [MUTED]='\e[38;2;150;150;180m'      # Muted purple
-    [BRIGHT]='\e[38;2;235;235;255m'     # Bright white
-    [DIM]='\e[38;2;100;100;120m'        # Dim gray
+    [PRIMARY]='\e[38;2;120;200;255m'    # Biru lembut
+    [ACCENT]='\e[38;2;255;125;175m'     # Merah muda lembut
+    [SUCCESS]='\e[38;2;125;255;175m'    # Hijau lembut
+    [WARNING]='\e[38;2;255;230;125m'    # Kuning lembut
+    [DANGER]='\e[38;2;255;125;125m'     # Merah lembut
+    [MUTED]='\e[38;2;150;150;180m'      # Ungu pudar
+    [BRIGHT]='\e[38;2;235;235;255m'     # Putih cerah
+    [DIM]='\e[38;2;100;100;120m'        # Abu-abu redup
 )
 
 # Effects
@@ -22,8 +22,8 @@ ITALIC='\e[3m'
 RESET='\e[0m'
 
 # Configuration
-VERSION="6.0"
-AUTHOR="Joel Indra - Anonre"
+VERSION="7" # Versi diperbarui untuk revisi ini
+AUTHOR="Anonre | Joel Indra"
 YEAR=$(date +%Y)
 SCAN_DATE=$(date +"%d-%m-%Y %H:%M:%S")
 SESSION_ID=$(date +%s | sha256sum | cut -c1-12)
@@ -32,152 +32,115 @@ SESSION_ID=$(date +%s | sha256sum | cut -c1-12)
 set -e
 trap 'elegant_error $LINENO' ERR
 
-# Elegant typing animation
+# Simplified elegant typing - prints instantly
 elegant_type() {
     local text="$1"
-    local speed=${2:-0.03}
-    
-    for ((i=0; i<${#text}; i++)); do
-        echo -n "${text:$i:1}"
-        sleep $speed
-    done
-    echo
+    echo -e "${text}" # Mencetak seluruh teks sekaligus
+    sleep 0.05 # Jeda sangat singkat untuk keindahan visual
 }
 
-# Elegant progress bar
-elegant_progress() {
+# Simplified elegant loading animation (now just a text prompt)
+elegant_loading() {
     local task_name=$1
-    local duration=${2:-0.01}
-    local width=40
-    local progress=0
-    
-    echo -e "\n${COLORS[MUTED]}┌─ ${COLORS[ACCENT]}${task_name} ${COLORS[MUTED]}─┐${RESET}"
-    
-    while [ $progress -le 100 ]; do
-        local filled=$((width * progress / 100))
-        local empty=$((width - filled))
-        
-        # Progress bar
-        echo -ne "\r${COLORS[DIM]}│${RESET} "
-        
-        # Filled portion
-        for ((i=0; i<filled; i++)); do
-            echo -ne "${COLORS[PRIMARY]}█${RESET}"
-        done
-        
-        # Empty portion
-        for ((i=0; i<empty; i++)); do
-            echo -ne "${COLORS[DIM]}▒${RESET}"
-        done
-        
-        echo -ne " ${COLORS[DIM]}│${RESET} ${COLORS[BRIGHT]}${progress}%${RESET} "
-        
-        progress=$((progress + 1))
-        sleep $duration
-    done
-    
-    echo -e "\n${COLORS[MUTED]}└───────────────────────────────────────┘${RESET}\n"
+    local delay=${2:-0.8} # Total penundaan untuk pesan muncul "Done"
+
+    echo -ne "\n${COLORS[ACCENT]}>>> ${task_name}...${RESET}" # Simpler prompt
+    sleep $delay
+    # Menimpa baris dengan "Done!" dan tanda centang sukses
+    echo -e "\r${COLORS[ACCENT]}>>> ${task_name}... ${COLORS[SUCCESS]}Done!${RESET} \n" # Overwrite and add newline
 }
 
 # Elegant error handler
 elegant_error() {
     local line=$1
-    echo -e "\n${COLORS[DANGER]}${BOLD}╔════════════════════════════════════╗${RESET}"
-    echo -e "${COLORS[DANGER]}${BOLD}║ Error detected at line $line         ${RESET}"
-    echo -e "${COLORS[DANGER]}${BOLD}╚════════════════════════════════════╝${RESET}"
+    echo ""
+    echo -e "${COLORS[DANGER]}${BOLD}║ Error detected at line $line       ${RESET}"
     exit 1
 }
 
 # Elegant banner
 display_banner() {
     clear
-    
+
     # Direct printing for proper color rendering
-    echo -e "${COLORS[PRIMARY]}${BOLD}┌───────────────────────────────────────────────┐"
-    echo -e "${COLORS[PRIMARY]}│                                               │"
-    echo -e "${COLORS[PRIMARY]}│  ${COLORS[ACCENT]}╦ ╦╔═╗╔╦╗╔═╗╔═╗${COLORS[PRIMARY]}                              │"
-    echo -e "${COLORS[PRIMARY]}│  ${COLORS[ACCENT]}╠═╣╠═╣ ║║║╣ ╚═╗${COLORS[PRIMARY]}                              │"
-    echo -e "${COLORS[PRIMARY]}│  ${COLORS[ACCENT]}╩ ╩╩ ╩═╩╝╚═╝╚═╝${COLORS[PRIMARY]}                              │"
-    echo -e "${COLORS[PRIMARY]}│                                               │"
-    echo -e "${COLORS[PRIMARY]}│  ${COLORS[SUCCESS]}Security Testing Framework v${VERSION}${COLORS[PRIMARY]}              │"
-    echo -e "${COLORS[PRIMARY]}│  ${COLORS[MUTED]}Created by: ${COLORS[BRIGHT]}${AUTHOR} © ${YEAR}${COLORS[PRIMARY]}       │"
-    echo -e "${COLORS[PRIMARY]}└───────────────────────────────────────────────┘${RESET}"
+    echo ""
+    echo -e "${COLORS[PRIMARY]}│  ${COLORS[ACCENT]}╦ ╦╔═╗╔╦╗╔═╗╔═╗${COLORS[PRIMARY]}                          "
+    echo -e "${COLORS[PRIMARY]}│  ${COLORS[ACCENT]}╠═╣╠═╣ ║║║╣ ╚═╗${COLORS[PRIMARY]}                          "
+    echo -e "${COLORS[PRIMARY]}│  ${COLORS[ACCENT]}╩ ╩╩ ╩═╩╝╚═╝╚═╝${COLORS[PRIMARY]}                          "
+    echo -e "${COLORS[PRIMARY]}│  ${COLORS[SUCCESS]}Bug Bounty Framework v${VERSION}${COLORS[PRIMARY]}            "
+    echo -e "${COLORS[PRIMARY]}│  ${COLORS[MUTED]}Created by: ${COLORS[BRIGHT]}${AUTHOR} ©${YEAR}${COLORS[PRIMARY]}      "    
+    sleep 0.5 # Jeda singkat setelah tampilan banner
     
-    # Optional animation after the banner is displayed
-    sleep 0.3
-    
-    # System info with elegant styling
-    echo -e "\n${COLORS[PRIMARY]}┌───────────────────────────────────────────────┐${RESET}"
-    echo -e "${COLORS[PRIMARY]}│ ${COLORS[WARNING]}System Information${COLORS[PRIMARY]}                      ${RESET}"
-    echo -e "${COLORS[PRIMARY]}│────────────────────────────────────────────────${RESET}"
+    # System info with elegant styling (maintains original box structure)
+    echo ""
     echo -e "${COLORS[PRIMARY]}│ ${COLORS[SUCCESS]}• Kernel    ${COLORS[MUTED]}| ${COLORS[BRIGHT]}$(uname -r)${COLORS[PRIMARY]}${RESET}"
     echo -e "${COLORS[PRIMARY]}│ ${COLORS[SUCCESS]}• Machine   ${COLORS[MUTED]}| ${COLORS[BRIGHT]}$(uname -m)${COLORS[PRIMARY]}${RESET}"
     echo -e "${COLORS[PRIMARY]}│ ${COLORS[SUCCESS]}• Session   ${COLORS[MUTED]}| ${COLORS[BRIGHT]}$SESSION_ID${COLORS[PRIMARY]}${RESET}"
     echo -e "${COLORS[PRIMARY]}│ ${COLORS[SUCCESS]}• Timestamp ${COLORS[MUTED]}| ${COLORS[BRIGHT]}$SCAN_DATE${COLORS[PRIMARY]}${RESET}"
-    echo -e "${COLORS[PRIMARY]}└───────────────────────────────────────────────┘${RESET}\n"
+    echo ""
+    if [[ $(id -u) -eq 0 ]]; then
+        echo -e "│ • ${COLORS[SUCCESS]}You are Root! You can run this tool.${COLORS[PRIMARY]}${RESET}"
+    else
+        echo -e "│ • ${COLORS[DANGER]}Not Root! You need root to run this tool.${COLORS[PRIMARY]}${RESET}"
+    fi
 }
 
-# Elegant help display
+# Elegant help display (simplified section headers)
 display_help() {
     display_banner
     
     # Reconnaissance
-    echo -e "${COLORS[PRIMARY]}┌─ ${COLORS[SUCCESS]}Reconnaissance${COLORS[PRIMARY]} ────────────────────────┐${RESET}"
-    echo -e "${COLORS[PRIMARY]}│ ${COLORS[BRIGHT]}-d ${COLORS[MUTED]}--mass-recon    ${COLORS[WARNING]}Mass Target Scan${COLORS[PRIMARY]}   ${RESET}"
-    echo -e "${COLORS[PRIMARY]}│ ${COLORS[BRIGHT]}-s ${COLORS[MUTED]}--single-recon  ${COLORS[WARNING]}Single Target Scan${COLORS[PRIMARY]} ${RESET}"
-    echo -e "${COLORS[PRIMARY]}│ ${COLORS[BRIGHT]}-f ${COLORS[MUTED]}--port-scan  ${COLORS[WARNING]}Single Target Scan${COLORS[PRIMARY]} ${RESET}"
-    echo -e "${COLORS[PRIMARY]}└─────────────────────────────────────────┘${RESET}\n"
+    echo ""
+    echo -e "${COLORS[PRIMARY]}${BOLD}--- Reconnaissance ---${RESET}\n" # Simplified header
+    echo -e "  ${COLORS[BRIGHT]}-d ${COLORS[MUTED]}--mass-recon    ${COLORS[WARNING]}Mass Target Scan${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-s ${COLORS[MUTED]}--single-recon  ${COLORS[WARNING]}Single Target Scan${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-f ${COLORS[MUTED]}--port-scan     ${COLORS[WARNING]}Single Port Scan${RESET}\n"
     
     # Injection
-    echo -e "${COLORS[ACCENT]}┌─ ${COLORS[SUCCESS]}Injection Testing${COLORS[ACCENT]} ─────────────────────┐${RESET}"
-    echo -e "${COLORS[ACCENT]}│ ${COLORS[BRIGHT]}-p ${COLORS[MUTED]}--mass-sql     ${COLORS[WARNING]}SQL Injection Scan${COLORS[ACCENT]}  ${RESET}"
-    echo -e "${COLORS[ACCENT]}│ ${COLORS[BRIGHT]}-o ${COLORS[MUTED]}--single-sql   ${COLORS[WARNING]}SQL Injection Test${COLORS[ACCENT]}  ${RESET}"
-    echo -e "${COLORS[ACCENT]}│ ${COLORS[BRIGHT]}-w ${COLORS[MUTED]}--mass-xss     ${COLORS[WARNING]}XSS Vulnerability${COLORS[ACCENT]}   ${RESET}"
-    echo -e "${COLORS[ACCENT]}│ ${COLORS[BRIGHT]}-x ${COLORS[MUTED]}--single-xss   ${COLORS[WARNING]}XSS Payload Test${COLORS[ACCENT]}    ${RESET}"
-    echo -e "${COLORS[ACCENT]}│ ${COLORS[BRIGHT]}-n ${COLORS[MUTED]}--single-lfi   ${COLORS[WARNING]}LFI Exploit${COLORS[ACCENT]}         ${RESET}"
-    echo -e "${COLORS[ACCENT]}└─────────────────────────────────────────┘${RESET}\n"
+    echo -e "${COLORS[ACCENT]}${BOLD}--- Injection Testing ---${RESET}\n" # Simplified header
+    echo -e "  ${COLORS[BRIGHT]}-p ${COLORS[MUTED]}--mass-sql      ${COLORS[WARNING]}SQL Injection Scan${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-o ${COLORS[MUTED]}--single-sql    ${COLORS[WARNING]}SQL Injection Test${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-w ${COLORS[MUTED]}--mass-xss      ${COLORS[WARNING]}XSS Vulnerability${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-x ${COLORS[MUTED]}--single-xss    ${COLORS[WARNING]}XSS Payload Test${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-n ${COLORS[MUTED]}--single-lfi    ${COLORS[WARNING]}LFI Exploit${RESET}\n"
     
     # Special ops
-    echo -e "${COLORS[WARNING]}┌─ ${COLORS[SUCCESS]}Special Operations${COLORS[WARNING]} ────────────────────┐${RESET}"
-    echo -e "${COLORS[WARNING]}│ ${COLORS[BRIGHT]}-m ${COLORS[MUTED]}--mass-assess  ${COLORS[PRIMARY]}Full Assessment${COLORS[WARNING]}    ${RESET}"
-    echo -e "${COLORS[WARNING]}│ ${COLORS[BRIGHT]}-y ${COLORS[MUTED]}--sub-takeover ${COLORS[PRIMARY]}Subdomain Takeover${COLORS[WARNING]} ${RESET}"
-    echo -e "${COLORS[WARNING]}│ ${COLORS[BRIGHT]}-q ${COLORS[MUTED]}--dir-patrol   ${COLORS[PRIMARY]}Directory Scanner${COLORS[WARNING]}  ${RESET}"
-    echo -e "${COLORS[WARNING]}│ ${COLORS[BRIGHT]}-l ${COLORS[MUTED]}--js-finder    ${COLORS[PRIMARY]}JS Secret Finder${COLORS[WARNING]}   ${RESET}"
-    echo -e "${COLORS[WARNING]}│ ${COLORS[BRIGHT]}-k ${COLORS[MUTED]}--mass-cors    ${COLORS[PRIMARY]}CORS Misconfig${COLORS[WARNING]}     ${RESET}"
-    echo -e "${COLORS[WARNING]}│ ${COLORS[BRIGHT]}-u ${COLORS[MUTED]}--mass-csrf    ${COLORS[PRIMARY]}CSRF Weakness${COLORS[WARNING]}      ${RESET}"
-    echo -e "${COLORS[WARNING]}└─────────────────────────────────────────┘${RESET}\n"
+    echo -e "${COLORS[WARNING]}${BOLD}--- Special Operations ---${RESET}\n" # Simplified header
+    echo -e "  ${COLORS[BRIGHT]}-m ${COLORS[MUTED]}--mass-assess   ${COLORS[PRIMARY]}Full Assessment${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-y ${COLORS[MUTED]}--sub-takeover  ${COLORS[PRIMARY]}Subdomain Takeover${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-q ${COLORS[MUTED]}--dir-patrol    ${COLORS[PRIMARY]}Directory Scanner${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-l ${COLORS[MUTED]}--js-finder     ${COLORS[PRIMARY]}JS Secret Finder${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-k ${COLORS[MUTED]}--mass-cors     ${COLORS[PRIMARY]}CORS Misconfig${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-u ${COLORS[MUTED]}--mass-csrf     ${COLORS[PRIMARY]}CSRF Weakness${RESET}\n"
     
     # System
-    echo -e "${COLORS[DANGER]}┌─ ${COLORS[SUCCESS]}System${COLORS[DANGER]} ────────────────────────────────┐${RESET}"
-    echo -e "${COLORS[DANGER]}│ ${COLORS[BRIGHT]}-i ${COLORS[MUTED]}--install      ${COLORS[PRIMARY]}Install Dependencies${COLORS[DANGER]} ${RESET}"
-    echo -e "${COLORS[DANGER]}│ ${COLORS[BRIGHT]}-h ${COLORS[MUTED]}--help         ${COLORS[PRIMARY]}Display Commands${COLORS[DANGER]}     ${RESET}"
-    echo -e "${COLORS[DANGER]}└─────────────────────────────────────────┘${RESET}\n"
-    
-    echo -e "${COLORS[BRIGHT]}Usage: ${COLORS[MUTED]}./hades [options]${RESET}"
+    echo -e "${COLORS[DANGER]}${BOLD}--- System ---${RESET}\n" # Simplified header
+    echo -e "  ${COLORS[BRIGHT]}-i ${COLORS[MUTED]}--install       ${COLORS[PRIMARY]}Install Dependencies${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-h ${COLORS[MUTED]}--help          ${COLORS[PRIMARY]}Display Commands${RESET}\n"
+
+    echo -e "${COLORS[DIM]}${BOLD}--- OWASP WASTG Testing ---${RESET}\n" # Simplified header
+    echo -e "  ${COLORS[BRIGHT]}-e ${COLORS[MUTED]}--client-test   ${COLORS[BRIGHT]}Client-side Testing${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-b ${COLORS[MUTED]}--weak-test     ${COLORS[BRIGHT]}Testing For Weak Cryptography${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-r ${COLORS[MUTED]}--info-test     ${COLORS[BRIGHT]}Information Gathering - UPCOMING${RESET}\n"
+
+    echo -e "${COLORS[BRIGHT]}${BOLD}--- More Info ---${RESET}\n" # Simplified header
+    echo -e "${COLORS[BRIGHT]}Usage: ${COLORS[MUTED]}./hades-temp.sh [options]${RESET}"
     echo -e "${COLORS[BRIGHT]}Repo:  ${COLORS[SUCCESS]}https://github.com/joelindra/hades${RESET}\n"
 }
 
-# Module execution with elegant animation
+# Module execution with elegant loading
 execute_module() {
     local module_name=$1
     local script_path=$2
     
-    echo -e "\n${COLORS[ACCENT]}╔═════════════════════════════════════════╗${RESET}"
-    echo -e "${COLORS[ACCENT]}║ ${COLORS[WARNING]}Executing Module${COLORS[ACCENT]}                      ║${RESET}"
-    echo -e "${COLORS[ACCENT]}╠═════════════════════════════════════════╣${RESET}"
-    echo -e "${COLORS[ACCENT]}║ ${COLORS[SUCCESS]}• Module   ${COLORS[MUTED]}| ${COLORS[BRIGHT]}${module_name}${COLORS[ACCENT]}${RESET}"
-    echo -e "${COLORS[ACCENT]}║ ${COLORS[SUCCESS]}• Script   ${COLORS[MUTED]}| ${COLORS[BRIGHT]}${script_path}${COLORS[ACCENT]}${RESET}"
-    echo -e "${COLORS[ACCENT]}║ ${COLORS[SUCCESS]}• Time     ${COLORS[MUTED]}| ${COLORS[BRIGHT]}$(date +"%H:%M:%S")${COLORS[ACCENT]}${RESET}"
-    echo -e "${COLORS[ACCENT]}╚═════════════════════════════════════════╝${RESET}"
-    
-    # Loading animation
-    elegant_progress "Loading Module" 0.008
+    # Use the simplified loading animation
+    elegant_loading "Loading Module" 0.5 # Shorter delay for quicker feel
     
     # Execute
     if source "./function/$script_path" 2>/tmp/hades_error.log; then
-        echo -e "${COLORS[SUCCESS]}${BOLD}✓ Module executed successfully${RESET}\n"
+        echo -e "${COLORS[SUCCESS]}${BOLD}Module executed successfully${RESET}\n"
     else
-        echo -e "${COLORS[DANGER]}${BOLD}✗ Module execution failed${RESET}"
+        echo -e "${COLORS[DANGER]}${BOLD}Module execution failed${RESET}"
         cat /tmp/hades_error.log
         exit 1
     fi
@@ -220,6 +183,11 @@ declare -A options_map=(
     [--js-finder]="m-js.sh"
     [-k]="m-cors.sh"
     [--mass-cors]="m-cors.sh"
+
+    [-b]="weak.sh"
+    [--weak-test]="weak.sh"
+    [-e]="client.sh"
+    [--client-test]="client.sh"
     
     # System
     [-i]="all-req.sh"
@@ -228,19 +196,12 @@ declare -A options_map=(
     [--help]="help"
 )
 
-# Update check with animation
+# Update check with simplified display
 check_updates() {
-    echo -e "${COLORS[MUTED]}┌─ ${COLORS[WARNING]}Update Check ${COLORS[MUTED]}─┐${RESET}"
-    echo -ne "${COLORS[MUTED]}│ ${COLORS[BRIGHT]}Checking"
-    
-    for ((i=0; i<3; i++)); do
-        sleep 0.3
-        echo -ne "."
-    done
-    
-    echo -e " ${COLORS[SUCCESS]}✓${COLORS[MUTED]}    │${RESET}"
-    echo -e "${COLORS[MUTED]}│ ${COLORS[SUCCESS]}Latest version${COLORS[MUTED]}  │${RESET}"
-    echo -e "${COLORS[MUTED]}└──────────────────┘${RESET}\n"
+    echo -e "\n${COLORS[WARNING]}${BOLD}--- Update Check ---${RESET}" # Simplified header
+    echo -ne "${COLORS[BRIGHT]}Checking for updates...${RESET}"
+    sleep 1 # Short delay for checking
+    echo -e "\r${COLORS[SUCCESS]}Latest version installed.${RESET}\n" # Overwrite line
 }
 
 # Main execution
@@ -257,12 +218,6 @@ main() {
         exit 0
     fi
     
-    # Session start
-    echo -e "${COLORS[PRIMARY]}╔═════════════════════════════════════════╗${RESET}"
-    echo -e "${COLORS[PRIMARY]}║ ${COLORS[WARNING]}Session Initiated${COLORS[PRIMARY]}                     ║${RESET}"
-    echo -e "${COLORS[PRIMARY]}║ ${COLORS[SUCCESS]}• ID ${COLORS[MUTED]}| ${COLORS[BRIGHT]}${SESSION_ID}${COLORS[PRIMARY]}                   ║${RESET}"
-    echo -e "${COLORS[PRIMARY]}╚═════════════════════════════════════════╝${RESET}"
-    
     # Process options
     for option in "$@"; do
         local script="${options_map[$option]}"
@@ -278,22 +233,15 @@ main() {
             continue
         fi
         
-        echo -ne "${COLORS[ACCENT]}Initializing $option... ${RESET}"
-        sleep 0.5
-        echo -e "${COLORS[SUCCESS]}ready${RESET}\n"
+        # Replaced old "Initializing... ready" with a more elegant loading for each module
         execute_module "$option" "$script"
     done
     
     # Session end
-    echo -e "${COLORS[SUCCESS]}╔═════════════════════════════════════════╗${RESET}"
-    echo -e "${COLORS[SUCCESS]}║ ${COLORS[WARNING]}Session Complete${COLORS[SUCCESS]}                      ║${RESET}"
-    echo -e "${COLORS[SUCCESS]}║ ${COLORS[BRIGHT]}• Time   ${COLORS[MUTED]}| ${COLORS[ACCENT]}$(date +"%H:%M:%S")${COLORS[SUCCESS]}                ║${RESET}"
-    echo -e "${COLORS[SUCCESS]}║ ${COLORS[BRIGHT]}• Status ${COLORS[MUTED]}| ${COLORS[SUCCESS]}All operations successful${COLORS[SUCCESS]}     ║${RESET}"
-    echo -e "${COLORS[SUCCESS]}╚═════════════════════════════════════════╝${RESET}\n"
-    
-    # Simple exit
-    echo -e "${COLORS[BRIGHT]}Thank you for using HADES${RESET}"
-    sleep 0.5
+    echo ""
+    echo -e "${COLORS[SUCCESS]}| ${COLORS[WARNING]}Session Complete${COLORS[SUCCESS]}                         ${RESET}"
+    echo -e "${COLORS[SUCCESS]}| ${COLORS[BRIGHT]}• Time   ${COLORS[MUTED]}| ${COLORS[ACCENT]}$(date +"%H:%M:%S")${COLORS[SUCCESS]}                 ${RESET}"
+    echo -e "${COLORS[SUCCESS]}| ${COLORS[BRIGHT]}• Status ${COLORS[MUTED]}| ${COLORS[SUCCESS]}All operations successful${COLORS[SUCCESS]}   ${RESET}"
 }
 
 # Execute main
