@@ -110,7 +110,7 @@ display_help() {
     echo -e "  ${COLORS[BRIGHT]}-y ${COLORS[MUTED]}--sub-takeover  ${COLORS[PRIMARY]}Subdomain Takeover${RESET}"
     echo -e "  ${COLORS[BRIGHT]}-q ${COLORS[MUTED]}--dir-patrol    ${COLORS[PRIMARY]}Directory Scanner${RESET}"
     echo -e "  ${COLORS[BRIGHT]}-l ${COLORS[MUTED]}--js-finder     ${COLORS[PRIMARY]}JS Secret Finder${RESET}"
-    echo -e "  ${COLORS[BRIGHT]}-k ${COLORS[MUTED]}--mass-cors     ${COLORS[PRIMARY]}Mass CORS Misconfiguration Test${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-k ${COLORS[MUTED]}--mass-cors     ${COLORS[PRIMARY]}Mass CORS Misconfiguration Scan${RESET}"
     echo -e "  ${COLORS[BRIGHT]}-u ${COLORS[MUTED]}--mass-csrf     ${COLORS[PRIMARY]}Mass CSRF Weakness Scan${RESET}\n"
     
     # System
