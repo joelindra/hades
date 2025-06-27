@@ -98,11 +98,11 @@ display_help() {
     
     # Injection
     echo -e "${COLORS[ACCENT]}${BOLD}--- Injection Testing ---${RESET}\n" # Simplified header
-    echo -e "  ${COLORS[BRIGHT]}-p ${COLORS[MUTED]}--mass-sql      ${COLORS[WARNING]}SQL Injection Scan${RESET}"
-    echo -e "  ${COLORS[BRIGHT]}-o ${COLORS[MUTED]}--single-sql    ${COLORS[WARNING]}SQL Injection Test${RESET}"
-    echo -e "  ${COLORS[BRIGHT]}-w ${COLORS[MUTED]}--mass-xss      ${COLORS[WARNING]}XSS Vulnerability${RESET}"
-    echo -e "  ${COLORS[BRIGHT]}-x ${COLORS[MUTED]}--single-xss    ${COLORS[WARNING]}XSS Payload Test${RESET}"
-    echo -e "  ${COLORS[BRIGHT]}-n ${COLORS[MUTED]}--single-lfi    ${COLORS[WARNING]}LFI Exploit${RESET}\n"
+    echo -e "  ${COLORS[BRIGHT]}-p ${COLORS[MUTED]}--mass-sql      ${COLORS[WARNING]}Mass SQL Injection Scan & Exploit${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-o ${COLORS[MUTED]}--single-sql    ${COLORS[WARNING]}Single SQL Injection Scan & Exploit${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-w ${COLORS[MUTED]}--mass-xss      ${COLORS[WARNING]}Mass XSS Scan & Exploit${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-x ${COLORS[MUTED]}--single-xss    ${COLORS[WARNING]}Single XSS Scan & Exploit${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-n ${COLORS[MUTED]}--single-lfi    ${COLORS[WARNING]}Single LFI scan & Exploit${RESET}\n"
     
     # Special ops
     echo -e "${COLORS[WARNING]}${BOLD}--- Special Operations ---${RESET}\n" # Simplified header
@@ -110,8 +110,8 @@ display_help() {
     echo -e "  ${COLORS[BRIGHT]}-y ${COLORS[MUTED]}--sub-takeover  ${COLORS[PRIMARY]}Subdomain Takeover${RESET}"
     echo -e "  ${COLORS[BRIGHT]}-q ${COLORS[MUTED]}--dir-patrol    ${COLORS[PRIMARY]}Directory Scanner${RESET}"
     echo -e "  ${COLORS[BRIGHT]}-l ${COLORS[MUTED]}--js-finder     ${COLORS[PRIMARY]}JS Secret Finder${RESET}"
-    echo -e "  ${COLORS[BRIGHT]}-k ${COLORS[MUTED]}--mass-cors     ${COLORS[PRIMARY]}CORS Misconfig${RESET}"
-    echo -e "  ${COLORS[BRIGHT]}-u ${COLORS[MUTED]}--mass-csrf     ${COLORS[PRIMARY]}CSRF Weakness${RESET}\n"
+    echo -e "  ${COLORS[BRIGHT]}-k ${COLORS[MUTED]}--mass-cors     ${COLORS[PRIMARY]}Mass CORS Misconfiguration Test${RESET}"
+    echo -e "  ${COLORS[BRIGHT]}-u ${COLORS[MUTED]}--mass-csrf     ${COLORS[PRIMARY]}Mass CSRF Weakness Scan${RESET}\n"
     
     # System
     echo -e "${COLORS[DANGER]}${BOLD}--- System ---${RESET}\n" # Simplified header
