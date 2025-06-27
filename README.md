@@ -30,7 +30,7 @@ HADES is a modern, elegant security testing framework designed for penetration t
 
 ### Prerequisites
 
-- Linux operating system
+- Kali Linux operating system
 - Root privileges (required for most operations)
 - Bash 5.0 or higher
 
