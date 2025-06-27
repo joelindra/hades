@@ -44,19 +44,19 @@ HADES is a modern, elegant security testing framework designed for penetration t
 
 2. **Make the script executable**
    ```bash
-   chmod +x hades.sh
+   chmod +x hades
    ```
 
 3. **Install dependencies**
    ```bash
-   ./hades.sh -i
+   ./hades -i
    # or
-   ./hades.sh --install
+   ./hades --install
    ```
 
 4. **Run with root privileges**
    ```bash
-   sudo ./hades.sh
+   sudo ./hades
    ```
 
 ---
@@ -67,12 +67,12 @@ HADES is a modern, elegant security testing framework designed for penetration t
 
 ```bash
 # Display help and available commands
-./hades.sh -h
-./hades.sh --help
+./hades -h
+./hades --help
 
 # Install all required dependencies
-./hades.sh -i
-./hades.sh --install
+./hades -i
+./hades --install
 ```
 
 ### 🔍 Reconnaissance
@@ -86,13 +86,13 @@ HADES is a modern, elegant security testing framework designed for penetration t
 **Examples:**
 ```bash
 # Mass reconnaissance
-./hades.sh -d
+./hades -d
 
 # Single target recon
-./hades.sh -s
+./hades -s
 
 # Port scanning
-./hades.sh -f
+./hades -f
 ```
 
 ### 💉 Injection Testing
@@ -108,15 +108,15 @@ HADES is a modern, elegant security testing framework designed for penetration t
 **Examples:**
 ```bash
 # SQL injection testing
-./hades.sh -p  # Mass scan
-./hades.sh -o  # Single target
+./hades -p  # Mass scan
+./hades -o  # Single target
 
 # XSS testing
-./hades.sh -w  # Mass scan
-./hades.sh -x  # Single target
+./hades -w  # Mass scan
+./hades -x  # Single target
 
 # LFI testing
-./hades.sh -n # Single target
+./hades -n # Single target
 ```
 
 ### 🛡️ Special Operations
@@ -133,16 +133,16 @@ HADES is a modern, elegant security testing framework designed for penetration t
 **Examples:**
 ```bash
 # Full assessment
-./hades.sh -m
+./hades -m
 
 # Subdomain takeover
-./hades.sh -y
+./hades -y
 
 # Directory scanning
-./hades.sh -q
+./hades -q
 
 # JavaScript analysis
-./hades.sh -l
+./hades -l
 ```
 
 ### 🧪 OWASP WASTG Testing
@@ -156,10 +156,10 @@ HADES is a modern, elegant security testing framework designed for penetration t
 **Examples:**
 ```bash
 # Client-side testing
-./hades.sh -e
+./hades -e
 
 # Cryptography testing
-./hades.sh -b
+./hades -b
 ```
 
 ---
@@ -168,7 +168,7 @@ HADES is a modern, elegant security testing framework designed for penetration t
 
 ```
 hades/
-├── hades.sh           # Main executable script
+├── hades           # Main executable script
 ├── function/               # Module directory
 │   ├── m-recon.sh         # Mass reconnaissance
 │   ├── s-recon.sh         # Single reconnaissance  
