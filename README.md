@@ -1,246 +1,277 @@
-# HADES - Elegant Security Testing Framework
+# HADES - Elegant Security Testing Framework v7
 
-**Security Testing Framework v6.0**
+*An elegant and comprehensive security testing toolkit for penetration testers and bug bounty hunters*
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-6.0-green.svg)](https://github.com/joelindra/hades)
+[![Version](https://img.shields.io/badge/version-7.0-blue.svg)](https://github.com/joelindra/hades)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Bash](https://img.shields.io/badge/bash-5.0+-red.svg)](https://www.gnu.org/software/bash/)
 [![Platform](https://img.shields.io/badge/platform-Linux-lightgrey.svg)](https://www.linux.org/)
 
-*An elegant, modern security testing framework with a beautiful command-line interface*
-
 </div>
 
-## 🌟 Features
+---
 
-HADES is a comprehensive security testing framework designed with elegance and efficiency in mind. It provides a beautiful command-line interface with smooth animations and color-coded output for enhanced user experience.
+## 🎯 Overview
 
-### 🔍 Reconnaissance
-- **Mass Target Scanning** - Automated reconnaissance across multiple targets
-- **Single Target Analysis** - Deep dive into individual targets
-- **Port Scanning** - Comprehensive port discovery and analysis
+HADES is a modern, elegant security testing framework designed for penetration testers and bug bounty hunters. It provides a comprehensive suite of automated tools for reconnaissance, vulnerability assessment, and exploitation testing with a beautiful, color-coded interface.
 
-### 💉 Injection Testing
-- **SQL Injection** - Mass and single target SQL injection testing
-- **XSS Vulnerabilities** - Cross-site scripting detection and exploitation
-- **LFI Exploits** - Local file inclusion vulnerability testing
+### ✨ Key Features
 
-### 🛡️ Security Assessment
-- **Full Security Assessment** - Comprehensive vulnerability analysis
-- **CORS Misconfiguration** - Cross-origin resource sharing testing
-- **CSRF Weakness Detection** - Cross-site request forgery analysis
+- **🎨 Elegant Interface**: Beautiful color-coded output with modern styling
+- **🔍 Comprehensive Reconnaissance**: Mass and single target scanning capabilities
+- **💉 Injection Testing**: SQL injection, XSS, and LFI vulnerability detection
+- **🛡️ OWASP WASTG Compliance**: Following modern security testing standards
+- **⚡ Automated Workflows**: Streamlined testing processes
+- **📊 Session Management**: Unique session tracking and reporting
 
-### 🎯 Special Operations
-- **Subdomain Takeover** - Identify and exploit subdomain vulnerabilities
-- **Directory Scanning** - Intelligent directory and file discovery
-- **JavaScript Secret Finder** - Extract sensitive data from JS files
+---
 
-## 🚀 Installation
+## 🚀 Quick Start
 
 ### Prerequisites
-- Linux operating system (Kali recommended)
+
+- Linux operating system
+- Root privileges (required for most operations)
 - Bash 5.0 or higher
-- Internet connection for dependency installation
 
-### Quick Install
-```bash
-# Clone the repository
-git clone https://github.com/joelindra/hades.git
+### Installation
 
-# Navigate to directory
-cd hades
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/joelindra/hades.git
+   cd hades
+   ```
 
-# Make executable
-chmod +x hades
+2. **Make the script executable**
+   ```bash
+   chmod +x hades.sh
+   ```
 
-# Install dependencies
-./hades -i
-```
+3. **Install dependencies**
+   ```bash
+   ./hades.sh -i
+   # or
+   ./hades.sh --install
+   ```
 
-## 📖 Usage
+4. **Run with root privileges**
+   ```bash
+   sudo ./hades.sh
+   ```
+
+---
+
+## 📋 Usage
 
 ### Basic Commands
-```bash
-# Display help and all available options
-./hades -h
 
-# Install all dependencies
-./hades -i
+```bash
+# Display help and available commands
+./hades.sh -h
+./hades.sh --help
+
+# Install all required dependencies
+./hades.sh -i
+./hades.sh --install
 ```
 
-### Reconnaissance Operations
-```bash
-# Mass target reconnaissance
-./hades -d
+### 🔍 Reconnaissance
 
-# Single target reconnaissance
-./hades -s
+| Command | Description |
+|---------|-------------|
+| `-d, --mass-recon` | Mass target reconnaissance scan |
+| `-s, --single-recon` | Single target reconnaissance |
+| `-f, --port-scan` | Single port scanning |
+
+**Examples:**
+```bash
+# Mass reconnaissance
+./hades.sh -d
+
+# Single target recon
+./hades.sh -s
 
 # Port scanning
-./hades -f
+./hades.sh -f
 ```
 
-### Injection Testing
+### 💉 Injection Testing
+
+| Command | Description |
+|---------|-------------|
+| `-p, --mass-sql` | Mass SQL injection scanning |
+| `-o, --single-sql` | Single target SQL injection test |
+| `-w, --mass-xss` | Mass XSS vulnerability scanning |
+| `-x, --single-xss` | Single XSS payload testing |
+| `-n, --single-lfi` | Local File Inclusion exploit testing |
+
+**Examples:**
 ```bash
-# Mass SQL injection testing
-./hades -p
+# SQL injection testing
+./hades.sh -p  # Mass scan
+./hades.sh -o  # Single target
 
-# Single target SQL injection
-./hades -o
+# XSS testing
+./hades.sh -w  # Mass scan
+./hades.sh -x  # Single target
 
-# Mass XSS vulnerability scanning
-./hades -w
-
-# Single XSS payload testing
-./hades -x
-
-# Local file inclusion testing
-./hades -n
+# LFI testing
+./hades.sh -n # Single target
 ```
 
-### Security Assessment
+### 🛡️ Special Operations
+
+| Command | Description |
+|---------|-------------|
+| `-m, --mass-assess` | Full security assessment |
+| `-y, --sub-takeover` | Subdomain takeover detection |
+| `-q, --dir-patrol` | Directory and file discovery |
+| `-l, --js-finder` | JavaScript secrets and API key finder |
+| `-k, --mass-cors` | CORS misconfiguration detection |
+| `-u, --mass-csrf` | CSRF weakness assessment |
+
+**Examples:**
 ```bash
-# Full security assessment
-./hades -m
+# Full assessment
+./hades.sh -m
 
-# CORS misconfiguration testing
-./hades -k
+# Subdomain takeover
+./hades.sh -y
 
-# CSRF weakness analysis
-./hades -u
+# Directory scanning
+./hades.sh -q
+
+# JavaScript analysis
+./hades.sh -l
 ```
 
-### Special Operations
+### 🧪 OWASP WASTG Testing
+
+| Command | Description |
+|---------|-------------|
+| `-e, --client-test` | Client-side security testing |
+| `-b, --weak-test` | Weak cryptography detection |
+| `-r, --info-test` | Information gathering (upcoming) |
+
+**Examples:**
 ```bash
-# Subdomain takeover detection
-./hades -y
+# Client-side testing
+./hades.sh -e
 
-# Directory and file discovery
-./hades -q
-
-# JavaScript secret extraction
-./hades -l
+# Cryptography testing
+./hades.sh -b
 ```
 
-## 🎨 Interface Preview
+---
 
-HADES features a beautiful command-line interface with:
-- **Elegant Color Scheme** - Soft, eye-friendly colors
-- **Smooth Animations** - Progress bars and typing effects
-- **Session Management** - Unique session IDs and timestamps
-- **Error Handling** - Graceful error management with detailed logging
-
-## 📋 Command Reference
-
-| Short | Long Form | Description | Category |
-|-------|-----------|-------------|----------|
-| `-d` | `--mass-recon` | Mass Target Scan | Reconnaissance |
-| `-s` | `--single-recon` | Single Target Scan | Reconnaissance |
-| `-f` | `--port-scan` | Port Scanner | Reconnaissance |
-| `-p` | `--mass-sql` | SQL Injection Scan | Injection |
-| `-o` | `--single-sql` | SQL Injection Test | Injection |
-| `-w` | `--mass-xss` | XSS Vulnerability | Injection |
-| `-x` | `--single-xss` | XSS Payload Test | Injection |
-| `-n` | `--single-lfi` | LFI Exploit | Injection |
-| `-m` | `--mass-assess` | Full Assessment | Assessment |
-| `-y` | `--sub-takeover` | Subdomain Takeover | Special Ops |
-| `-q` | `--dir-patrol` | Directory Scanner | Special Ops |
-| `-l` | `--js-finder` | JS Secret Finder | Special Ops |
-| `-k` | `--mass-cors` | CORS Misconfig | Special Ops |
-| `-u` | `--mass-csrf` | CSRF Weakness | Special Ops |
-| `-i` | `--install` | Install Dependencies | System |
-| `-h` | `--help` | Display Help | System |
-
-## 🛠️ Project Structure
+## 🏗️ Project Structure
 
 ```
 hades/
-├── hades                 # Main executable script
-├── function/             # Module directory
-│   ├── m-recon.sh        # Mass reconnaissance
-│   ├── s-recon.sh        # Single reconnaissance
-│   ├── s-port.sh         # Port scanning
-│   ├── m-sqli.sh         # Mass SQL injection
-│   ├── s-sqli.sh         # Single SQL injection
-│   ├── m-xss.sh          # Mass XSS testing
-│   ├── s-xss.sh          # Single XSS testing
-│   ├── s-lfi.sh          # LFI testing
-│   ├── m-scan.sh         # Full assessment
-│   ├── takeover.sh       # Subdomain takeover
-│   ├── m-csrf.sh         # CSRF testing
-│   ├── dir-scan.sh       # Directory scanning
-│   ├── m-js.sh           # JavaScript analysis
-│   ├── m-cors.sh         # CORS testing
-│   └── all-req.sh        # Dependency installer
-├── logs/                 # Session logs
-└── README.md             # This file
+├── hades.sh           # Main executable script
+├── function/               # Module directory
+│   ├── m-recon.sh         # Mass reconnaissance
+│   ├── s-recon.sh         # Single reconnaissance  
+│   ├── s-port.sh          # Port scanning
+│   ├── m-sqli.sh          # Mass SQL injection
+│   ├── s-sqli.sh          # Single SQL injection
+│   ├── m-xss.sh           # Mass XSS testing
+│   ├── s-xss.sh           # Single XSS testing
+│   ├── s-lfi.sh           # LFI testing
+│   ├── m-scan.sh          # Mass assessment
+│   ├── takeover.sh        # Subdomain takeover
+│   ├── m-csrf.sh          # CSRF testing
+│   ├── dir-scan.sh        # Directory scanning
+│   ├── m-js.sh            # JavaScript analysis
+│   ├── m-cors.sh          # CORS testing
+│   ├── weak.sh            # Cryptography testing
+│   ├── client.sh          # Client-side testing
+│   └── all-req.sh         # Dependencies installer
+├── README.md              # This file
+└── LICENSE                # License file
 ```
 
-## ⚠️ Legal Disclaimer
+---
 
-**IMPORTANT**: This tool is designed for educational purposes and authorized security testing only.
+## 🎨 Interface Features
 
-- Only use HADES on systems you own or have explicit permission to test
-- Unauthorized access to computer systems is illegal in most jurisdictions
-- The authors are not responsible for any misuse of this tool
-- Always follow responsible disclosure practices
-- Ensure compliance with local laws and regulations
+HADES features a modern, elegant interface with:
 
-## 🔒 Ethical Guidelines
+- **Color-coded output** for different types of information
+- **Session tracking** with unique session IDs
+- **Real-time progress indicators** with elegant loading animations
+- **System information display** including kernel, machine type, and timestamps
+- **Error handling** with clear, formatted error messages
 
-When using HADES:
-1. **Get Permission** - Always obtain written authorization before testing
-2. **Document Everything** - Keep detailed logs of all testing activities
-3. **Report Responsibly** - Follow responsible disclosure practices
-4. **Respect Scope** - Stay within the defined testing boundaries
-5. **Protect Data** - Handle any discovered vulnerabilities with care
+### Color Scheme
+
+- 🔵 **Primary**: Soft blue for main interface elements
+- 🌸 **Accent**: Soft pink for highlights and prompts
+- 🟢 **Success**: Soft green for successful operations
+- 🟡 **Warning**: Soft yellow for warnings and important info
+- 🔴 **Danger**: Soft red for errors and critical issues
+- 🟣 **Muted**: Faded purple for secondary information
+
+---
+
+## ⚠️ Important Notes
+
+### Security Considerations
+
+- **Root Access Required**: Most operations require root privileges for proper functionality
+- **Educational Purpose**: This tool is designed for authorized penetration testing and educational purposes only
+- **Legal Compliance**: Ensure you have proper authorization before testing any targets
+- **Ethical Usage**: Always follow responsible disclosure practices
+
+### System Requirements
+
+- **Operating System**: Linux (Ubuntu, Debian, Kali, etc.)
+- **Memory**: Minimum 1GB RAM recommended
+- **Storage**: At least 500MB free space for dependencies
+- **Network**: Internet connection required for some modules
+
+---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
+We welcome contributions to HADES! Here's how you can help:
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/new-module`
+3. **Make your changes** and test thoroughly
+4. **Commit your changes**: `git commit -m 'Add new security module'`
+5. **Push to the branch**: `git push origin feature/new-module`
+6. **Submit a pull request**
 
 ### Development Guidelines
-- Follow bash best practices
-- Maintain the elegant UI consistency
-- Add proper error handling
-- Include documentation for new features
-- Test thoroughly before submitting
 
-### Reporting Issues
-When reporting issues, please include:
-- Operating system and version
-- Bash version
-- Complete error messages
-- Steps to reproduce the issue
+- Follow the existing code style and color scheme
+- Add appropriate error handling
+- Include documentation for new features
+- Test all functionality before submitting
+
+---
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+---
+
 ## 👨‍💻 Author
 
-**Joel Indra - Anonre**
+**Joel Indra (Anonre)**
 - GitHub: [@joelindra](https://github.com/joelindra)
-- Created: 2025
-
-## 🙏 Acknowledgments
-
-- Thanks to all security researchers and tool developers
-- Inspired by the need for elegant security testing tools
-- Built with love for the cybersecurity community
-
-## 📞 Support
-
-If you find HADES useful, please:
-- ⭐ Star this repository
-- 🐛 Report bugs and issues
-- 💡 Suggest new features
-- 🔄 Share with the community
+- Repository: [HADES Framework](https://github.com/joelindra/hades)
 
 ---
 
-![image](https://github.com/user-attachments/assets/c8c2f079-bda2-43d0-b404-e8df689381ab)
+## 🙏 Acknowledgments
 
-*Remember: With great power comes great responsibility*
+- Thanks to the security community for continuous feedback and improvements
+- Special recognition to all contributors and testers
+- Inspired by modern penetration testing methodologies and OWASP guidelines
 
-</div>
+---
+
+**⚡ Happy Bug Hunting! ⚡**
