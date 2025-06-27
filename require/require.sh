@@ -1,95 +1,98 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-# Colors and formatting
-RED='\e[1;31m'
-GREEN='\e[1;32m'
-YELLOW='\e[1;33m'
-BLUE='\e[1;34m'
-MAGENTA='\e[1;35m'
-CYAN='\e[1;36m'
-NC='\e[0m' # No Color
-
-# ASCII Art Banner
-print_banner() {
-    echo -e "${CYAN}"
-    cat << "EOF"
-    ╔═══════════════════════════════════════════════╗
-    ║        🛠️  Security Tools Installer 🛡️       ║
-    ║        Advanced Penetration Testing Kit       ║
-    ╚═══════════════════════════════════════════════╝
-EOF
-    echo -e "${NC}"
+# Function to check internet connection
+check_internet() {
+    echo "Checking Internet Connection..."
+    if ping -c 1 google.com &> /dev/null; then
+        echo "Internet connection: ONLINE."
+    else
+        echo "Internet connection: OFFLINE. Please check your connection."
+        exit 1
+    fi
 }
 
-# Progress indicator
-show_progress() {
-    local message="$1"
-    echo -ne "\n${YELLOW}⚡ ${message}${NC}"
-    for i in {1..3}; do
-        echo -ne "."
-        sleep 0.5
-    done
-    echo -e "\n"
-}
+# Function to install required dependencies
+install_requirements() {
+    echo "Detecting Operating System..."
 
-# Success message
-success_msg() {
-    echo -e "${GREEN}✔️ $1${NC}"
-}
-
-# Error message
-error_msg() {
-    echo -e "${RED}❌ $1${NC}"
-    exit 1
+    case "$(uname)" in
+        "Darwin")
+            echo "macOS Detected. Installing macOS requirements..."
+            # Assuming 'require/require-mac.sh' exists and is executable
+            (cd require && bash require-mac.sh) || {
+                echo "Error: Could not install macOS requirements."
+                exit 1
+            }
+            ;;
+        "Linux")
+            echo "Linux Detected. Installing Linux requirements..."
+            # Assuming 'require/require.sh' exists and is executable
+            (cd require && bash require.sh) || {
+                echo "Error: Could not install Linux requirements."
+                exit 1
+            }
+            ;;
+        *)
+            echo "Unsupported Operating System. This script only supports macOS and Linux."
+            exit 1
+            ;;
+    esac
 }
 
 # Check root privileges
 check_root() {
     if [ "$EUID" -ne 0 ]; then
-        error_msg "This script must be run as root"
+        echo "Error: This script must be run as root."
+        exit 1
     fi
-    success_msg " Root privileges verified"
+    figlet Root Privileges Verified...
+    echo ""
 }
 
 # System update function
 update_system() {
-    show_progress "Updating system packages"
+    echo "Updating system packages..."
+    echo ""
     if apt update && apt upgrade -y; then
-        success_msg " System updated successfully"
+        echo "System updated successfully."
     else
-        error_msg "Failed to update system"
+        echo "Error: Failed to update system."
+        exit 1
     fi
 }
 
 # Install base packages
 install_base_packages() {
-    echo -e "\n${CYAN}📦 Installing Base Packages${NC}"
+    echo "Installing Base Packages..."
+    echo ""
     packages=(
-        "figlet" "rush" "wafw00f" "dnsx" "git" "subjack" "seclists" 
-        "massdns" "ffuf" "nikto" "nmap" "golang" "subfinder" "toilet" 
+        "figlet" "rush" "wafw00f" "dnsx" "git" "subjack" "seclists"
+        "massdns" "ffuf" "nikto" "nmap" "golang" "subfinder" "toilet"
         "pip" "npm" "zsh" "curl" "wget" "amass" "python3-pip" "bc" "dos2unix"
     )
-    
+
     for package in "${packages[@]}"; do
-        echo -ne "${YELLOW}Installing ${package}...${NC}"
+        echo -n "Installing ${package}... "
         if apt install -y "$package" &>/dev/null; then
-            echo -e "${GREEN} ✓${NC}"
+            echo "Done."
         else
-            echo -e "${RED} ✗${NC}"
+            echo "Failed."
         fi
     done
 }
 
 # Install pip packages
 install_pip_packages() {
-    echo -e "\n${CYAN}📦 Installing Pip Packages${NC}"
-    show_progress "Installing Shodan"
+    echo "Installing Pip Packages..."
+    echo "Installing Shodan..."
+    echo ""
     pip install shodan --break-system-packages
 }
 
 # Install Go tools
 install_go_tools() {
-    echo -e "\n${CYAN}🔧 Installing Go Tools${NC}"
+    echo "Installing Go Tools..."
+    echo ""
     go_tools=(
         "github.com/Emoe/kxss@latest"
         "github.com/kacakb/jsfinder@latest"
@@ -107,7 +110,7 @@ install_go_tools() {
         "github.com/Ice3man543/SubOver@latest"
         "github.com/dwisiswant0/crlfuzz/cmd/crlfuzz@latest"
         "github.com/ezekg/git-hound@latest"
-        
+
         # All ProjectDiscovery tools
         "github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest"
         "github.com/projectdiscovery/httpx/cmd/httpx@latest"
@@ -131,33 +134,36 @@ install_go_tools() {
         "github.com/KathanP19/Gxss@latest"
         "github.com/c1phy/sqltimer/cmd/sqltimer@latest"
     )
-    
+
     for tool in "${go_tools[@]}"; do
-        echo -ne "${YELLOW}Installing ${tool##*/}...${NC}"
+        echo -n "Installing ${tool##*/}... "
         if go install "$tool" &>/dev/null; then
-            echo -e "${GREEN} ✓${NC}"
+            echo "Done."
         else
-            echo -e "${RED} ✗${NC}"
+            echo "Failed."
         fi
     done
 }
 
 # Install MassDNS Resolvers
 install_massdns_resolvers() {
-    show_progress "Installing MassDNS Resolvers"
+    echo "Installing MassDNS Resolvers..."
+    echo ""
     cd /root || exit
     if wget https://raw.githubusercontent.com/blechschmidt/massdns/master/lists/resolvers.txt; then
         cp resolvers.txt /usr/share/seclists/
         rm -rf resolvers.txt
-        success_msg "MassDNS Resolvers installed successfully"
+        echo "MassDNS Resolvers installed successfully."
     else
-        error_msg "Failed to install MassDNS Resolvers"
+        echo "Error: Failed to install MassDNS Resolvers."
+        exit 1
     fi
 }
 
 # Install GF
 install_gf() {
-    show_progress "Installing GF"
+    echo "Installing GF..."
+    echo ""
     cd /root || exit
     git clone https://github.com/tomnomnom/gf.git
     mkdir -p /usr/local/go/{src,bin}
@@ -170,17 +176,18 @@ install_gf() {
     mkdir -p ~/.gf
     cp -r gf/examples ~/.gf
     cp Gf-Patterns/*.json ~/.gf
-    success_msg "GF installed successfully"
+    echo "GF installed successfully."
 }
 
 # Install SecretFinder
 install_secretfinder() {
-    show_progress "Installing SecretFinder"
+    echo "Installing SecretFinder..."
+    echo ""
     cd /root || exit
     echo "127.0.0.1 $(hostname)" | sudo tee -a /etc/hosts
     git clone https://github.com/m4ll0k/SecretFinder.git secretfinder
     cd secretfinder || exit
-    
+
     if [ -f SecretFinder.py ]; then
         sudo cp SecretFinder.py /usr/bin/secretfinder.py
         sudo sed -i '1s/python$/python3/' /usr/bin/secretfinder.py
@@ -189,35 +196,33 @@ install_secretfinder() {
         pip install jsbeautifier lxml requests requests_file --break-system-packages
         pip install jsbeautifier --break-system-packages
         shodan init Z2oDsaHG35oCrPkzMDZbl9zMsFMhGoWE
-        success_msg "SecretFinder installed successfully"
+        echo "SecretFinder installed successfully."
     else
-        error_msg "SecretFinder.py not found"
+        echo "Error: SecretFinder.py not found."
+        exit 1
     fi
 }
 
 # Copy tools to system path
 copy_tools() {
-    show_progress "Copying tools to system path"
+    echo "Copying tools to system path..."
+    echo ""
     cp /root/go/bin/* /usr/bin/
     # Check if hades directory exists before attempting to create symlink
     if [ -d "/root/hades" ] && [ -f "/root/hades/hades" ]; then
-        echo -e '#!/bin/bash\nbash /root/hades/hades $1' | sudo tee /usr/bin/hades > /dev/null
+        echo '#!/bin/bash' | sudo tee /usr/bin/hades > /dev/null
+        echo 'bash /root/hades/hades $1' | sudo tee -a /usr/bin/hades > /dev/null
         chmod +x /usr/bin/hades
-        success_msg "All tools copied successfully"
+        echo "All tools copied successfully."
     else
-        echo -e "${YELLOW}Warning: hades directory not found, skipping symlink creation${NC}"
-        success_msg "Go tools copied successfully"
+        echo "Warning: hades directory not found, skipping symlink creation."
+        echo "Go tools copied successfully."
     fi
 }
-
-dos2unix ../function/dirsearchpatrol.sh
-dos2unix ../function/masssqlinject.sh
 
 # Main function
 main() {
     clear
-    print_banner
-    
     check_root
     update_system
     install_base_packages
@@ -227,10 +232,11 @@ main() {
     install_gf
     install_secretfinder
     copy_tools
-    
-    echo -e "\n${GREEN}🎉 Installation Complete!${NC}"
-    echo -e "${CYAN}All security tools have been successfully installed.${NC}"
-    echo -e "${YELLOW}Please restart your terminal to apply all changes.${NC}"
+
+    dos2unix ../function/dirsearchpatrol.sh
+    dos2unix ../function/masssqlinject.sh
+
+    echo "Installation Complete!"
 }
 
 # Start script execution
