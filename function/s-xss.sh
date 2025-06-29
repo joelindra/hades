@@ -285,7 +285,7 @@ send_to_telegram() {
 📊 Summary:
 • Total URLs: $(wc -l < "$workspace/result/wayback/wayback.txt" 2>/dev/null || echo "0")
 • Valid URLs: $(wc -l < "$workspace/result/wayback/valid.txt" 2>/dev/null || echo "0")
-• Potential XSS: $(wc -l < "$workspace/result/xss/reflected/vulnerable.txt" 2>/dev/null || echo "0")
+• Potential XSS: $(wc -l < "$workspace/result/xss/dalfox_results.txt" 2>/dev/null || echo "0")
 📤 Sending detailed results..."
 
         curl -s -X POST "https://api.telegram.org/bot$token/sendMessage" \
