@@ -222,7 +222,7 @@ find_js_files() {
                 
                 # Extract potential sensitive information
                 echo -e "\n[+] Analyzing: $url" >> "$analysis_file"
-                grep -iE 'api[_-]key|apikey|secret|password|token|aws|firebase|config|private|credential' "/tmp/temp.js" >> "$analysis_file"
+                grep -iE 'api[_-]?key|secret|password|token|auth|key|client[_-]?secret|client[_-]?id|bearer|jwt|aws_access_key|aws_secret_key|s3_key|s3_secret|firebase|gcp|azure|heroku|twilio|stripe|sendgrid|slack|github|private[_-]?key|passphrase|connection_string|webhook' "/tmp/temp.js" >> "$analysis_file"
                 
                 echo "$url" >> "$js_output"
                 ((valid_js++))
