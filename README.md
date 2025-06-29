@@ -309,6 +309,10 @@ Special thanks to the creators and maintainers of the integrated security tools 
 - Share with the security community
 
 ---
+
+![image](https://github.com/user-attachments/assets/bf2fdec0-8e1a-4f2b-86ce-68c938ef0b22)
+
+---
 <p align="center">
   <sub>⚡ Happy Hunting! ⚡</sub>
 </p>
