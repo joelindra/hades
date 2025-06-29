@@ -212,13 +212,13 @@ test_xss() {
         
         # Run Dalfox with advanced options
         dalfox file "$workspace/result/xss/potential_xss.txt" \
-            --skip-bav \
             --skip-mining-all \
-            --skip-mining-dict \
+            --skip-grepping \
             --custom-payload "'\\\"><script>alert('XSS')</script>,'\\\"><img src=x onerror=alert('XSS')>,'\\\"><svg onload=alert('XSS')>" \
             --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
             --timeout 3 \
-            --mass-worker 15 \
+            --mass-worker 25 \
+            --silence \
             --output "$workspace/result/xss/dalfox_results.txt"
         
         # Process Dalfox results and extract confirmed vulnerabilities
