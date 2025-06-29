@@ -69,6 +69,7 @@ install_base_packages() {
         "figlet" "rush" "wafw00f" "dnsx" "git" "subjack" "seclists"
         "massdns" "ffuf" "nikto" "nmap" "golang" "subfinder" "toilet"
         "pip" "npm" "zsh" "curl" "wget" "amass" "python3-pip" "bc" "dos2unix"
+        "zip"
     )
 
     for package in "${packages[@]}"; do
