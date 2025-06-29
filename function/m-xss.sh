@@ -191,7 +191,8 @@ test_xss() {
     echo -e "${MAGENTA}[*] Processing potential XSS endpoints...${NC}"
     cat "$workspace/result/gf/xss.txt" 2>/dev/null | \
         grep -E '\bhttps?://[^[:space:]]+[?&][^[:space:]]+=[^[:space:]]+' | \
-        sort -u > "$workspace/result/xss/potential_xss.txt"
+        sort -u > "$workspace/result/xss/potential_xss.txt" 
+        sed 's/=.*/=/' $workspace/result/xss/potential_xss.txt > $workspace/result/xss/urls_xss.txt
     
     potential_count=$(wc -l < "$workspace/result/xss/potential_xss.txt" 2>/dev/null || echo "0")
     echo -e "${GREEN}[✓] Found ${potential_count} potential XSS endpoints${NC}"
@@ -200,17 +201,14 @@ test_xss() {
         echo -e "${MAGENTA}[*] Running Dalfox XSS Scanner...${NC}"
         
         # Run Dalfox with advanced options
-        dalfox file "$workspace/result/xss/potential_xss.txt" \
-            --no-color \
-            --format url \
-            --skip-bav \
+        dalfox file "$workspace/result/xss/urls_xss.txt" \
             --skip-mining-all \
-            --skip-mining-dict \
-            --only-custom-payload \
+            --skip-grepping \
             --custom-payload "'\\\"><script>alert('XSS')</script>,'\\\"><img src=x onerror=alert('XSS')>,'\\\"><svg onload=alert('XSS')>" \
             --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
-            --timeout 5 \
-            --delay 1 \
+            --timeout 3 \
+            --mass-worker 25 \
+            --silence \
             --output "$workspace/result/xss/dalfox_results.txt"
         
         # Process Dalfox results and extract confirmed vulnerabilities
