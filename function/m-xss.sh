@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Required Tools:
+# subfinder, assetfinder, httprobe, waybackurls, anew, ffuf, gf, dalfox, wafw00f, zip, curl
+
 # Colors
 MAGENTA='\033[1;35m'
 NC='\033[0m' # No Color
@@ -128,7 +131,7 @@ read_domains_from_file() {
 # WAF detection
 check_waf() {
     echo -e "\n${BLUE}[+] Checking Web Application Firewall for $workspace...${NC}"
-    wafw00f "$workspace"
+    wafw00f "https://$workspace" # Check WAF on the base domain over https
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 }
 
@@ -140,13 +143,11 @@ enumerate_domain() {
     mkdir -p "$workspace"/{sources,result/{xss,wayback,gf,httpx}}
     
     echo -e "${MAGENTA}[*] Running Subfinder...${NC}"
-    # Removed &> /dev/null to show output in terminal
     subfinder -d "$workspace" -o "$workspace/sources/subfinder.txt" 
     subfinder_count=$(wc -l < "$workspace/sources/subfinder.txt" 2>/dev/null || echo "0")
     echo -e "${GREEN}[✓] Subfinder found ${subfinder_count} subdomains${NC}"
     
     echo -e "${MAGENTA}[*] Running Assetfinder...${NC}"
-    # Removed &> /dev/null to show output in terminal
     assetfinder -subs-only "$workspace" | tee "$workspace/sources/assetfinder.txt" 
     assetfinder_count=$(wc -l < "$workspace/sources/assetfinder.txt" 2>/dev/null || echo "0")
     echo -e "${GREEN}[✓] Assetfinder found ${assetfinder_count} subdomains${NC}"
@@ -166,7 +167,6 @@ probe_http() {
     
     # Probe hosts dan simpan hasil sementara
     temp_file=$(mktemp)
-    # Removed &> /dev/null to show output in terminal
     cat "$workspace/sources/all.txt" | httprobe -c 50 -t 5000 | tee "$temp_file" 
     
     # Deduplikasi: prioritaskan HTTPS daripada HTTP
@@ -200,12 +200,11 @@ probe_http() {
 collect_wayback() {
     echo -e "\n${BLUE}[+] Collecting URLs from Wayback Machine for $workspace...${NC}"
     
-    # Removed &> /dev/null to show output in terminal
     cat "$workspace/result/httpx/httpx.txt" | waybackurls | anew "$workspace/result/wayback/wayback-tmp.txt" 
     
     echo -e "${MAGENTA}[*] Filtering relevant URLs...${NC}"
     cat "$workspace/result/wayback/wayback-tmp.txt" 2>/dev/null | \
-        egrep -v "\.woff|\.ttf|\.svg|\.eot|\.png|\.jpeg|\.jpg|\.png|\.css|\.ico" | \
+        egrep -iv "\.woff|\.ttf|\.svg|\.eot|\.png|\.jpeg|\.jpg|\.css|\.ico" | \
         sed 's/:80//g;s/:443//g' | sort -u > "$workspace/result/wayback/wayback.txt"
     
     rm -f "$workspace/result/wayback/wayback-tmp.txt"
@@ -223,7 +222,7 @@ validate_urls() {
         return 0
     fi
 
-    # Removed &> /dev/null to show output in terminal
+    # Using -s to silence ffuf's progress and non-critical errors
     cat "$workspace/result/wayback/wayback.txt" | \
         ffuf -c -u "FUZZ" -w - -of csv -o "$workspace/result/wayback/valid-tmp.txt" -t 100 -rate 1000 
     
@@ -259,7 +258,10 @@ run_gf_patterns() {
     for pattern in "${!patterns[@]}"; do
         ((current++))
         echo -e "${MAGENTA}[*] ($current/$total_patterns) Checking for ${patterns[$pattern]}...${NC}"
-        # Removed &> /dev/null to show output in terminal
+        if [ ! -s "$workspace/result/wayback/valid.txt" ]; then
+            echo -e "${YELLOW}[!] No valid URLs to scan for ${patterns[$pattern]}. Skipping.${NC}"
+            continue
+        fi
         gf "$pattern" "$workspace/result/wayback/valid.txt" | tee "$workspace/result/gf/${pattern}.txt" 
         count=$(wc -l < "$workspace/result/gf/${pattern}.txt" 2>/dev/null || echo "0")
         echo -e "${GREEN}[✓] Found ${count} potential ${patterns[$pattern]} endpoints${NC}"
@@ -287,6 +289,7 @@ test_xss() {
         grep -E '\bhttps?://[^[:space:]]+[?&][^[:space:]]+=[^[:space:]]+' | \
         sort -u > "$workspace/result/xss/potential_xss.txt" 
     
+    # Prepare URLs for Dalfox (e.g., http://host/path?param=)
     sed 's/=.*/=/' "$workspace/result/xss/potential_xss.txt" > "$workspace/result/xss/urls_xss.txt"
     
     potential_count=$(wc -l < "$workspace/result/xss/potential_xss.txt" 2>/dev/null || echo "0")
@@ -296,23 +299,22 @@ test_xss() {
         echo -e "${MAGENTA}[*] Running Dalfox XSS Scanner...${NC}"
         
         # Run Dalfox with advanced options
-        # Removed &> /dev/null to show output in terminal
         dalfox file "$workspace/result/xss/urls_xss.txt" \
             --skip-mining-all \
             --skip-grepping \
             --custom-payload "'\\\"><script>alert('XSS')</script>,'\\\"><img src=x onerror=alert('XSS')>,'\\\"><svg onload=alert('XSS')>" \
             --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
-            --timeout 3 \
-            --mass-worker 25 \
+            --timeout 10 \
+            --worker 25 \
             --silence \
             --output "$workspace/result/xss/dalfox_results.txt"
         
         # Process Dalfox results and extract confirmed vulnerabilities
-        if [ -f "$workspace/result/xss/dalfox_results.txt" ]; then
+        if [ -s "$workspace/result/xss/dalfox_results.txt" ]; then
             echo -e "\n${GREEN}[✓] Dalfox scan completed${NC}"
             
             # Extract and format vulnerable URLs
-            grep "POC" "$workspace/result/xss/dalfox_results.txt" | sort -u > "$workspace/result/xss/vulnerable.txt"
+            grep "\[POC\]" "$workspace/result/xss/dalfox_results.txt" | sort -u > "$workspace/result/xss/vulnerable.txt"
             
             vulnerable_count=$(wc -l < "$workspace/result/xss/vulnerable.txt" 2>/dev/null || echo "0")
             if [ "$vulnerable_count" -gt 0 ]; then
@@ -348,18 +350,24 @@ send_to_telegram() {
         return 1
     fi
 
-    local token=$(<"telegram_token.txt")
-    local chat_id=$(<"telegram_chat_id.txt")
+    local token
+    token=$(<"telegram_token.txt")
+    local chat_id
+    chat_id=$(<"telegram_chat_id.txt")
     local result_dir="$workspace/result"
 
-    local total_urls_count=$(wc -l < "$result_dir/wayback/wayback.txt" 2>/dev/null || echo 0)
-    local valid_urls_count=$(wc -l < "$result_dir/wayback/valid.txt" 2>/dev/null || echo 0)
-    local potential_xss_count=$(wc -l < "$workspace/result/xss/potential_xss.txt" 2>/dev/null || echo 0)
-    local confirmed_xss_count=$(wc -l < "$workspace/result/xss/vulnerable.txt" 2>/dev/null || echo 0)
+    local total_urls_count
+    total_urls_count=$(wc -l < "$result_dir/wayback/wayback.txt" 2>/dev/null || echo 0)
+    local valid_urls_count
+    valid_urls_count=$(wc -l < "$result_dir/wayback/valid.txt" 2>/dev/null || echo 0)
+    local potential_xss_count
+    potential_xss_count=$(wc -l < "$workspace/result/xss/potential_xss.txt" 2>/dev/null || echo 0)
+    local confirmed_xss_count
+    confirmed_xss_count=$(wc -l < "$workspace/result/xss/vulnerable.txt" 2>/dev/null || echo 0)
 
     local message
     message=$(printf "🔍 *XSS Scan Completed for:* \`%s\`\n\n" "$workspace"
-    printf "� *Summary:*\n"
+    printf "📊 *Summary:*\n"
     printf " • Total URLs Found: \`%s\`\n" "$total_urls_count"
     printf " • Valid URLs: \`%s\`\n" "$valid_urls_count"
     printf " • Potential XSS Endpoints: \`%s\`\n" "$potential_xss_count"
@@ -379,8 +387,7 @@ send_to_telegram() {
         local archive_name="results-$(basename "$workspace")-$(date +%F_%H-%M-%S).zip"
         
         echo -e "${BLUE}[*] Creating results archive: ${archive_name}${NC}"
-        # Opsi -j (junk paths) agar file tidak dalam folder saat di-zip
-        zip -r -j "$archive_name" "$result_dir" > /dev/null
+        zip -r "$archive_name" "$workspace" -x "$workspace/sources/*" > /dev/null
 
         echo -e "${BLUE}[*] Uploading archive...${NC}"
         curl -s -X POST "https://api.telegram.org/bot$token/sendDocument" \
@@ -433,4 +440,3 @@ main() {
 
 # Run the script
 main
-�
